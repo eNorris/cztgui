@@ -13,7 +13,7 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
+    mainwindow.cpp \
     patientinfoform.cpp \
     studyinfoform.cpp \
     otherinfoform.cpp \
@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     fpgadialog.cpp \
     globalconfigdialog.cpp \
     anodedialog.cpp \
-    cathodedialog.cpp
+    cathodedialog.cpp \
+    globals.cpp
 
 HEADERS  += mainwindow.h \
     patientinfoform.h \
@@ -37,7 +38,13 @@ HEADERS  += mainwindow.h \
     fpgadialog.h \
     globalconfigdialog.h \
     anodedialog.h \
-    cathodedialog.h
+    cathodedialog.h \
+    globals.h \
+    common_types.h \
+    spectdmsharedlib_global.h \
+    SpectDM_types.h \
+    H3DASIC_types.h \
+    spectdmdll.h
 
 FORMS    += mainwindow.ui \
     patientinfoform.ui \
@@ -51,3 +58,12 @@ FORMS    += mainwindow.ui \
     globalconfigdialog.ui \
     anodedialog.ui \
     cathodedialog.ui
+
+# Add the library file for 64-bit Linux, links to BOTH libSpectDMSharedLib.so and libSpectDMSharedLib.so.42
+# The two files are identical, but because of naming conventions, they have to both be there.
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/release/ -lSpectDMSharedLib
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/debug/ -lSpectDMSharedLib
+else:unix: LIBS += -L$$PWD/ -lSpectDMSharedLib
+
+INCLUDEPATH += $$PWD/
+DEPENDPATH += $$PWD/
