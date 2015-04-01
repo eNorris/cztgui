@@ -9,6 +9,19 @@ ConnectDialog::ConnectDialog(QWidget *parent) :
     ui(new Ui::ConnectDialog)
 {
     ui->setupUi(this);
+    m_pInstance = this;
+
+    SpectDMDll::SetConnectStatusFunction(ConnectStatusCallbackFunc);
+    //SpectDMDll::SetConnectStatusFunction(ConnectStatusCallbackFunc);
+    //SpectDMDll::SetSysStatusFunction(SysStatusCallbackFunc);
+    //SpectDMDll::SetToolbarStatusFunction(ToolbarStatusCallbackFunc);
+
+    // setup operation callbacks
+    //SpectDMDll::SetOperationErrorFunction(OperationErrorCallbackFunc);
+    //SpectDMDll::SetOperationCompleteFunction(OperationCompleteCallbackFunc);
+    //SpectDMDll::SetOperationProgressFunction(OperationProgressCallbackFunc);
+
+    connect(ui->clearButton, SIGNAL(clicked()), ui->statusTextEdit, SLOT(clear()));
 }
 
 ConnectDialog::~ConnectDialog()
@@ -50,22 +63,22 @@ void ConnectDialog::OperationProgressCallbackFunc(int a_Progress)
 
 ConnectDialog *ConnectDialog::GetInstance()
 {
-    if(!m_pInstance)
-    {
-        m_pInstance = new ConnectDialog();
-    }
+    //if(!m_pInstance)
+    //{
+    //    m_pInstance = new ConnectDialog();
+    //}
 
     return m_pInstance;
 }
 
-void ConnectDialog::DeleteInstance()
-{
-    if(m_pInstance)
-    {
-        delete m_pInstance;
-        m_pInstance = 0;
-    }
-}
+//void ConnectDialog::DeleteInstance()
+//{
+//    if(m_pInstance)
+//    {
+//        delete m_pInstance;
+//        m_pInstance = NULL;
+//    }
+//}
 
 void ConnectDialog::AddConnectStatusEntry(const std::string &a_Status)
 {
@@ -79,12 +92,16 @@ void ConnectDialog::AddConnectStatusEntry(const std::string &a_Status)
 
 void ConnectDialog::on_connectButton_clicked()
 {
-    ui->statusTextEdit->append("HI!");
+
+    QString qs;
+    qs.toUtf8().constData();
 
     if(!ui->hostLineEdit->text().isEmpty() && !ui->cameraLineEdit->text().isEmpty())
     {
-        SpectDMDll::SetHostIPAddress(ui->hostLineEdit->text().toStdString().c_str());
-        SpectDMDll::SetCameraIPAddress(ui->cameraLineEdit->text().toStdString().c_str());
+        //SpectDMDll::SetHostIPAddress(ui->hostLineEdit->text().toStdString().c_str());
+        //SpectDMDll::SetCameraIPAddress(ui->cameraLineEdit->text().toStdString().c_str());
+        SpectDMDll::SetHostIPAddress(ui->hostLineEdit->text().toUtf8().constData());
+        SpectDMDll::SetCameraIPAddress(ui->cameraLineEdit->text().toUtf8().constData());
 
         if(SpectDMDll::Initialize())
         {
@@ -97,7 +114,7 @@ void ConnectDialog::on_connectButton_clicked()
         }
         else
         {
-            AddConnectStatusEntry(SpectDMDll::GetLastError().c_str());
+            AddConnectStatusEntry(SpectDMDll::GetLastError());
         }
     }
     else

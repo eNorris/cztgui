@@ -20,7 +20,7 @@ public:
 
     static ConnectDialog* m_pInstance;
     static ConnectDialog* GetInstance();
-    static void DeleteInstance();
+    //static void DeleteInstance();
 
     // These seem kinda useless, are they really necessary?
     static void ConnectStatusCallbackFunc(const char* a_Data);
@@ -35,6 +35,7 @@ public:
     void UpdateSysConfigItems();
     //void AddSysStatusEntry(const std::string &a_Status);  // Should be on another class
 
+private slots:
     void on_connectButton_clicked();
     void on_disconnectButton_clicked();
 

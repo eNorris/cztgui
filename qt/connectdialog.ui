@@ -18,6 +18,9 @@
     <layout class="QGridLayout" name="gridLayout_5">
      <item row="2" column="3">
       <widget class="QPushButton" name="loadButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Load</string>
        </property>
@@ -55,15 +58,18 @@
      </item>
      <item row="2" column="2">
       <widget class="QPushButton" name="disconnectButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Disconnect</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="0" colspan="5">
+     <item row="3" column="0" colspan="6">
       <widget class="QTextEdit" name="statusTextEdit"/>
      </item>
-     <item row="0" column="4" rowspan="3">
+     <item row="0" column="5" rowspan="3">
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -90,6 +96,13 @@
        </property>
        <property name="text">
         <string>192.168.1.112</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="4">
+      <widget class="QPushButton" name="clearButton">
+       <property name="text">
+        <string>Clear</string>
        </property>
       </widget>
      </item>
