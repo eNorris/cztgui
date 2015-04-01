@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AnodeDialog</class>
+ <widget class="QDialog" name="AnodeDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>644</width>
+    <height>404</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="anodeGlobalGroup">
+     <property name="title">
+      <string>Anode Global</string>
+     </property>
+     <widget class="QWidget" name="layoutWidget83">
+      <property name="geometry">
+       <rect>
+        <x>11</x>
+        <y>20</y>
+        <width>613</width>
+        <height>361</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_7" columnstretch="30,15,15,30">
+       <item row="4" column="0">
+        <widget class="QLabel" name="anodeTestPulseLab">
+         <property name="text">
+          <string>Test Pulse (PG) :</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="2">
+        <widget class="QComboBox" name="anodePeakDetectTimoutCombo"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="anodeTimeDetectRampLengthLab">
+         <property name="text">
+          <string>Time Detect Ramp Length (TRA) :</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" colspan="2">
+        <widget class="QComboBox" name="anodePeakingTimeCombo"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="anodePeakDetectTimeoutLab">
+         <property name="text">
+          <string>Peak Detect Timeout (TOA) :</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="anodePeakingTimeLab">
+         <property name="text">
+          <string>Peaking Time (TA) :</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QSpinBox" name="anodeTestPulseSpinner">
+         <property name="maximum">
+          <number>1023</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="anodeTestPulseEdgeLab">
+         <property name="text">
+          <string>Test Pulse Edge (cckan) :</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="anodeTestPulseValEdit">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>0.00mV</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1" colspan="3">
+        <widget class="QPushButton" name="ASICAnode_UpdateASICButton">
+         <property name="text">
+          <string>Update ASIC</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="4">
+        <widget class="QGroupBox" name="anodeThresholdsGroup">
+         <property name="title">
+          <string>Thresholds</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget85">
+          <property name="geometry">
+           <rect>
+            <x>11</x>
+            <y>22</y>
+            <width>391</width>
+            <height>62</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6" columnstretch="26,14,14">
+           <item row="0" column="0">
+            <widget class="QLabel" name="anodePosEnergyThreshLab">
+             <property name="text">
+              <string>Positive Energy (PA) :</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="anodePosEnergyThreshValEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>0.00mV</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QSpinBox" name="anodePosEnergyThreshSpinner">
+             <property name="maximum">
+              <number>1023</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="negEnergyThreshLab">
+             <property name="text">
+              <string>Negative Energy (PAn) :</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="anodeNegEnergyThreshValEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>0.00mV</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QSpinBox" name="anodeNegEnergyThreshSpinner">
+             <property name="maximum">
+              <number>1023</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QRadioButton" name="anodeTestPulse_PosAndNeg_radio">
+         <property name="text">
+          <string>Positive and Negative Charge</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" colspan="2">
+        <widget class="QComboBox" name="anodeTimeDetectRampLengthCombo"/>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QRadioButton" name="anodeEdge_negCharge_radio">
+         <property name="text">
+          <string>Negative Charge</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

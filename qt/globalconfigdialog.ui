@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>GlobalConfigDialog</class>
+ <widget class="QDialog" name="GlobalConfigDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>647</width>
+    <height>445</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="ASICGlobalOptGroup">
+     <property name="title">
+      <string>Options</string>
+     </property>
+     <widget class="QWidget" name="layoutWidget81">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>21</y>
+        <width>614</width>
+        <height>403</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_27" rowstretch="40,0,0">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_17">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="routeMonitorToPinTDOCheck">
+           <property name="text">
+            <string>Route Monitor To Pin TDO (SAUXTD) </string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="highGainCheck">
+           <property name="text">
+            <string>High Gain (HG)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="routeTempMonPinAXPK62Check">
+           <property name="text">
+            <string>Route Temperature Monitor To Pin AXPK62 (STMPM)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="monitorOutputsCheck">
+           <property name="text">
+            <string>Monitor Outputs (SAUXi)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="disableMultiResetAcqModeCheck">
+           <property name="text">
+            <string>Disable Multiple Reset Acquisition Mode (DISMRS)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QCheckBox" name="singleEventModeCheck">
+           <property name="text">
+            <string>Single Event Mode (SSP)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QCheckBox" name="timingMFSCheck">
+           <property name="text">
+            <string>Timing Multiple Firing Suppressor (SSET) </string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QCheckBox" name="validationCheck">
+           <property name="text">
+            <string>Validation (EVALID)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QCheckBox" name="energyMFSCheck">
+           <property name="text">
+            <string>Energy Multiple Firing Suppressor (SSE)</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="0">
+        <layout class="QGridLayout" name="gridLayout_18">
+         <item row="1" column="1">
+          <widget class="QRadioButton" name="timingChannelBiPolarGain_21mV_radio">
+           <property name="text">
+            <string>21mV</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="channelGainLab">
+           <property name="text">
+            <string>Channel Gain (G) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QRadioButton" name="ASICEnhancedSparsifiedRadio">
+           <property name="text">
+            <string>Enhanced Sparsified</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QRadioButton" name="multipleFiringSuppress_62_5_radio">
+           <property name="text">
+            <string>62.5nS</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="timingChannelUniPolarGainLab">
+           <property name="text">
+            <string>Timing Channel Unipolar Gain (GT) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="timingChannelBiPolarGainLab">
+           <property name="text">
+            <string>Timing Channel BiPolar Gain (GB) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QRadioButton" name="timingChannelBiPolarGain_164mV_radio">
+           <property name="text">
+            <string>164mV</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QRadioButton" name="timingChannelBiPolarGain_63mV_radio">
+           <property name="text">
+            <string>63mV</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="readOutModeLab">
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>Readout Mode (SPRS) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2">
+          <widget class="QRadioButton" name="internalLeakageCurrGen_0A_radio">
+           <property name="text">
+            <string>0A</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="internalLeakageCurrentGenLab">
+           <property name="text">
+            <string>Internal Leakage Current Generator (SL) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QRadioButton" name="internalLeakageCurrGen_60pA_radio">
+           <property name="text">
+            <string>60pA</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QRadioButton" name="unipolarGain_27radio">
+           <property name="text">
+            <string>27mV</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QRadioButton" name="unipolarGain_81radio">
+           <property name="text">
+            <string>81mV</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QRadioButton" name="timingChannelBiPolarGain_55mV_radio">
+           <property name="text">
+            <string>55mV</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="2">
+          <widget class="QRadioButton" name="multipleFiringSuppress_125_radio">
+           <property name="text">
+            <string>125nS</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="2">
+          <widget class="QRadioButton" name="multipleFiringSuppress_600_radio">
+           <property name="text">
+            <string>600nS</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QRadioButton" name="channelGain_60Radio">
+           <property name="text">
+            <string>60mV</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QRadioButton" name="ASICNormalSparsifiedRadio">
+           <property name="text">
+            <string>Normal Sparsified</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QRadioButton" name="channelGain_20radio">
+           <property name="text">
+            <string>20mV</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="multipleFiringSuppressLab">
+           <property name="text">
+            <string>Multiple Firing Suppress Time (SS) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QRadioButton" name="multipleFiringSuppress_250_radio">
+           <property name="text">
+            <string>250nS</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="2">
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>Update ASIC</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="0">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

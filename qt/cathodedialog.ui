@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CathodeDialog</class>
+ <widget class="QDialog" name="CathodeDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>659</width>
+    <height>617</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="cathodeGlobalGroup">
+     <property name="title">
+      <string>Cathode Global</string>
+     </property>
+     <widget class="QWidget" name="layoutWidget87">
+      <property name="geometry">
+       <rect>
+        <x>14</x>
+        <y>20</y>
+        <width>619</width>
+        <height>561</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_39" rowstretch="40,25,25,10">
+       <item row="3" column="1">
+        <widget class="QPushButton" name="cathode_UpdateASICButton">
+         <property name="text">
+          <string>Update ASIC</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <layout class="QGridLayout" name="gridLayout_8" columnstretch="30,15,15">
+         <item row="0" column="0">
+          <widget class="QLabel" name="cathodeChnl1InternalLeakageGenLab">
+           <property name="text">
+            <string>Channel 1 Internal Leakage Current Generator (SLcL) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QRadioButton" name="cathChnl1InternalLeak_350p_radio">
+           <property name="text">
+            <string>350pA</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QRadioButton" name="cathChnl1InternalLeak_2nA_radio">
+           <property name="text">
+            <string>2nA</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="cathodeChnl2InternalLeakageCurrentGenLab">
+           <property name="text">
+            <string>Channel 2 Internal Leakage Current Generator (SLcR) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QRadioButton" name="cathChnl2InternalLeak_350p_radio">
+           <property name="text">
+            <string>350pA</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QRadioButton" name="cathChnl2InternalLeak_2nA_radio">
+           <property name="text">
+            <string>2nA</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Test Mode Input (TL) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QRadioButton" name="cathTestMode_stepradio">
+           <property name="text">
+            <string>Step</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QRadioButton" name="cathTestMode_rampradio">
+           <property name="text">
+            <string>Ramp</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="cathodeTestClockTypeLab">
+           <property name="text">
+            <string>Test Clock Type (SCCK) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QRadioButton" name="cathTestClock_SDI">
+           <property name="text">
+            <string>Arrives on SDI</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QRadioButton" name="cathTestClock_AnodeCopy">
+           <property name="text">
+            <string>Copy Anode</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="cathodePeakDetectTimeoutLab_2">
+           <property name="text">
+            <string>Peak Detect Timeout (TOK) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QComboBox" name="cathodePeakDetectTimeoutCombo"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="cathodeTimeDetectRampLengthLab_2">
+           <property name="text">
+            <string>Time Detect Ramp Length (TRK) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QComboBox" name="cathodeTimeDetectRampLengthCombo"/>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="cathodePeakingTimeLab_2">
+           <property name="text">
+            <string>Peaking Time (TK) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QComboBox" name="cathodePeakingTimeCombo"/>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="cathodeTestPulseLab_2">
+           <property name="text">
+            <string>Test Pulse (PH) :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QLineEdit" name="cathodeTestPulseValEdit">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>0.00mV</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="2">
+          <widget class="QSpinBox" name="cathodeTestPulseSpinner">
+           <property name="maximum">
+            <number>1023</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QGroupBox" name="cathodeThresholdsGroup">
+         <property name="title">
+          <string>Thresholds</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         </property>
+         <widget class="QWidget" name="layoutWidget82">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>21</y>
+            <width>481</width>
+            <height>95</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_45" columnstretch="56,23,24">
+           <item row="0" column="0">
+            <widget class="QLabel" name="cathodeEnergyThresholdLab">
+             <property name="text">
+              <string>Energy (PB) :</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="cathodeEnergyThreshValEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>0.00mV</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QSpinBox" name="cathodeEnergyThreshSpinner">
+             <property name="maximum">
+              <number>1023</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="cathodeTimingPrimaryLab">
+             <property name="text">
+              <string>Timing Primary Multi Threshold Bi Polar (PD) :</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="cathodeTimingPrimaryThreshValEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>0.00mV</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QSpinBox" name="cathodeTimingPrimaryThreshSpinner">
+             <property name="maximum">
+              <number>1023</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="cathodeTimingUniPolarLab">
+             <property name="text">
+              <string>Timing Uni Polar PC) :</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="cathodeTimingUnipolarThreshValEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>0.00mV</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QSpinBox" name="cathodeTimingUnipolarThreshSpinner">
+             <property name="maximum">
+              <number>1023</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QGroupBox" name="cathodeTimingChannelsGroup">
+         <property name="title">
+          <string>Timing Channels</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget86">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>21</y>
+            <width>494</width>
+            <height>85</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_9" columnstretch="56,23,24">
+           <item row="0" column="0">
+            <widget class="QLabel" name="timingChannelsShaperPeakTimeLab">
+             <property name="text">
+              <string>Shaper Peaking Time (TT) :</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QRadioButton" name="shaperPeakingTime_100_radio">
+             <property name="text">
+              <string>100nS</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QRadioButton" name="shaperPeakingTime_200_radio">
+             <property name="text">
+              <string>200nS</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QRadioButton" name="shaperPeakingTime_400_radio">
+             <property name="text">
+              <string>400nS</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QRadioButton" name="shaperPeakingTime_800_radio">
+             <property name="text">
+              <string>800nS</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="secondaryMultiThreshDispLab">
+             <property name="text">
+              <string>Secondary Multi Thresholds Displacement (DAT) :</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="secondaryMultiThreshDispValEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>-100.00mV</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QSpinBox" name="secondaryMultiThreshDispSpinner">
+             <property name="maximum">
+              <number>15</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
