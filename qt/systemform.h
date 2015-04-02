@@ -10,6 +10,7 @@
 #include "globalconfigdialog.h"
 #include "anodedialog.h"
 #include "cathodedialog.h"
+#include "systemconfigdialog.h"
 
 namespace Ui {
 class SystemForm;
@@ -31,14 +32,16 @@ private:
     GlobalConfigDialog *configDialog;
     AnodeDialog *anodeDialog;
     CathodeDialog *cathodeDialog;
+    SystemConfigDialog *systemConfigDialog;
 
 protected slots:
-    void on_browseClicked();
-    void on_connectClicked();
-    void on_fpgaClicked();
-    void on_globalClicked();
-    void on_anodeClicked();
-    void on_cathodeClicked();
+    void on_browseButton_clicked();
+    void on_connectButton_clicked();
+    void on_fpgaButton_clicked();
+    void on_globalConfigButton_clicked();
+    void on_anodeButton_clicked();
+    void on_cathodeButton_clicked();
+    void on_systemConfigButton_clicked();
 };
 
 #endif // SYSTEMFORM_H

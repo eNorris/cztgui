@@ -38,31 +38,38 @@
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="fpgaButton">
-           <property name="text">
-            <string>FPGA Config...</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QPushButton" name="configButton">
+         <item row="1" column="1">
+          <widget class="QPushButton" name="globalConfigButton">
            <property name="text">
             <string>Global Config...</string>
            </property>
           </widget>
          </item>
          <item row="1" column="0">
+          <widget class="QPushButton" name="fpgaButton">
+           <property name="text">
+            <string>FPGA Config...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QPushButton" name="cathodeButton">
+           <property name="text">
+            <string>Cathode Config...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
           <widget class="QPushButton" name="anodeButton">
            <property name="text">
             <string>Anode Config...</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <widget class="QPushButton" name="cathodeButton">
+         <item row="0" column="1">
+          <widget class="QPushButton" name="systemConfigButton">
            <property name="text">
-            <string>Cathode Config...</string>
+            <string>System Config...</string>
            </property>
           </widget>
          </item>

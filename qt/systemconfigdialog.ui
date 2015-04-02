@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SystemConfigDialog</class>
+ <widget class="QDialog" name="SystemConfigDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>724</width>
+    <height>752</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="1">
+    <layout class="QGridLayout" name="gridLayout_48" rowstretch="10,12,23,15,40" columnstretch="67,33">
+     <item row="0" column="1" rowspan="2">
+      <widget class="QGroupBox" name="SysConfigRegDirectGroup">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>Register Direct</string>
+       </property>
+       <widget class="QWidget" name="layoutWidget611">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>211</width>
+          <height>131</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3" columnstretch="50,50">
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="LSBEdit"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="MSBEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="LSBLabel">
+           <property name="text">
+            <string>LSB :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="MSBLabel">
+           <property name="text">
+            <string>MSB :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="sysConfigRegLab">
+           <property name="text">
+            <string>Register No :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QPushButton" name="writeRegButton">
+           <property name="text">
+            <string>Write</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QPushButton" name="readRegButton">
+           <property name="text">
+            <string>Read</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="sysControlRegNoCombo">
+           <item>
+            <property name="text">
+             <string>14</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>15</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>16</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item row="1" column="0" rowspan="3">
+      <widget class="QGroupBox" name="spectSettingsGroup">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>50</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>Settings</string>
+       </property>
+       <widget class="QWidget" name="layoutWidget2">
+        <property name="geometry">
+         <rect>
+          <x>12</x>
+          <y>20</y>
+          <width>451</width>
+          <height>221</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,0,0,0,0,0" columnstretch="40,0,0">
+         <item row="5" column="0">
+          <widget class="QCheckBox" name="debugModeCheckBox">
+           <property name="text">
+            <string>Debug Mode</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QSpinBox" name="pktTransferSpinner">
+           <property name="minimum">
+            <number>1000</number>
+           </property>
+           <property name="maximum">
+            <number>63000</number>
+           </property>
+           <property name="singleStep">
+            <number>1000</number>
+           </property>
+           <property name="value">
+            <number>1000</number>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="mbMultiplexerAddrTypeCombo">
+           <item>
+            <property name="text">
+             <string>GM1_AUX</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>GM2_AUX</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>GM3_AUX</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>GM4_AUX</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>GM0AXPK62</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>GM0AXPK63</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>EMKO_IN</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MB_TEMP</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>REF2V</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>S3.3V</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>P2.5V</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>A2.5V</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>D2.5V</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>F2.5V</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>F1.5V</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>S5V</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="pktTransferLab">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Packet Transfer Rate :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QRadioButton" name="tokenDaisyChainradio">
+           <property name="text">
+            <string>Daisy Chain</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1" colspan="2">
+          <widget class="QPushButton" name="sendConfigButton">
+           <property name="text">
+            <string>Update Sys</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QRadioButton" name="tokenGM3radio">
+           <property name="text">
+            <string>GM3 Only</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="tokenTypeLab">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Token Type :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="mbMultiplexLab">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>MB Multiplexer Address Type :</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="pixelMapModeLab">
+           <property name="text">
+            <string>Pixel Mapping Mode:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QRadioButton" name="pixelMapGMBasedRadio">
+           <property name="text">
+            <string>GM-based</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QRadioButton" name="pixelMapGlobalRadio">
+           <property name="text">
+            <string>Global</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QGroupBox" name="SysActionsGroup">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>System Actions</string>
+       </property>
+       <widget class="QWidget" name="layoutWidget34">
+        <property name="geometry">
+         <rect>
+          <x>11</x>
+          <y>25</y>
+          <width>211</width>
+          <height>128</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_51">
+         <item row="0" column="0">
+          <widget class="QPushButton" name="startSysBtn">
+           <property name="text">
+            <string>Start Sys</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QPushButton" name="stopSysBtn">
+           <property name="text">
+            <string>Stop Sys</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QPushButton" name="startCollectBtn">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="text">
+            <string>Start Collect</string>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QPushButton" name="stopCollectBtn">
+           <property name="text">
+            <string>Stop Collect</string>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QGroupBox" name="GBEFirmwareGroup">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>GBE Firmware Version</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <widget class="QWidget" name="layoutWidget4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>21</y>
+          <width>211</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_41">
+         <item row="0" column="0">
+          <widget class="QLineEdit" name="GBEFirmwareVerEdit">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QPushButton" name="ReadGBEFirmwareBtn">
+           <property name="text">
+            <string>Read</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QGroupBox" name="cameraUpdateModeGroup">
+       <property name="title">
+        <string>Camera Update Mode</string>
+       </property>
+       <widget class="QWidget" name="layoutWidget33">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>23</y>
+          <width>301</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_38">
+         <item row="0" column="0">
+          <widget class="QRadioButton" name="cameraUpdateModeManualRadio">
+           <property name="text">
+            <string>Manual</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QRadioButton" name="cameraUpdateAutomaticRadio">
+           <property name="text">
+            <string>Automatic</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item row="4" column="0" colspan="2">
+      <widget class="QGroupBox" name="sysStatusGroup">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>Sys Status</string>
+       </property>
+       <widget class="QTextEdit" name="sysStatusTextArea">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>691</width>
+          <height>191</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="1">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>SystemConfigDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>SystemConfigDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

@@ -4,7 +4,7 @@
 #include <QDialog>
 
 namespace Ui {
-class CathodeDialog;
+    class CathodeDialog;
 }
 
 class CathodeDialog : public QDialog

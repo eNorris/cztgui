@@ -12,13 +12,14 @@ SystemForm::SystemForm(QWidget *parent) :
     configDialog = new GlobalConfigDialog(this);
     anodeDialog = new AnodeDialog(this);
     cathodeDialog = new CathodeDialog(this);
+    systemConfigDialog = new SystemConfigDialog(this);
 
-    connect(ui->browseButton, SIGNAL(clicked()), this, SLOT(on_browseClicked()));
-    connect(ui->connectButton, SIGNAL(clicked()), this, SLOT(on_connectClicked()));
-    connect(ui->fpgaButton, SIGNAL(clicked()), this, SLOT(on_fpgaClicked()));
-    connect(ui->configButton, SIGNAL(clicked()), this, SLOT(on_globalClicked()));
-    connect(ui->anodeButton, SIGNAL(clicked()), this, SLOT(on_anodeClicked()));
-    connect(ui->cathodeButton, SIGNAL(clicked()), this, SLOT(on_cathodeClicked()));
+    //connect(ui->browseButton, SIGNAL(clicked()), this, SLOT(on_browseClicked()));
+    //connect(ui->connectButton, SIGNAL(clicked()), this, SLOT(on_connectClicked()));
+    //connect(ui->fpgaButton, SIGNAL(clicked()), this, SLOT(on_fpgaClicked()));
+    //connect(ui->configButton, SIGNAL(clicked()), this, SLOT(on_globalClicked()));
+    //connect(ui->anodeButton, SIGNAL(clicked()), this, SLOT(on_anodeClicked()));
+    //connect(ui->cathodeButton, SIGNAL(clicked()), this, SLOT(on_cathodeClicked()));
 
     ui->lcdNumber->display(28);
 
@@ -31,9 +32,16 @@ SystemForm::SystemForm(QWidget *parent) :
 SystemForm::~SystemForm()
 {
     delete ui;
+
+    delete connectDialog;
+    delete fpgaDialog;
+    delete configDialog;
+    delete anodeDialog;
+    delete cathodeDialog;
+    delete systemConfigDialog;
 }
 
-void SystemForm::on_browseClicked()
+void SystemForm::on_browseButton_clicked()
 {
     QString dirname = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
                                                         "/home",
@@ -44,27 +52,32 @@ void SystemForm::on_browseClicked()
     qDebug() << dirname;
 }
 
-void SystemForm::on_connectClicked()
+void SystemForm::on_connectButton_clicked()
 {
     connectDialog->exec();
 }
 
-void SystemForm::on_fpgaClicked()
+void SystemForm::on_fpgaButton_clicked()
 {
     fpgaDialog->exec();
 }
 
-void SystemForm::on_globalClicked()
+void SystemForm::on_globalConfigButton_clicked()
 {
     configDialog->exec();
 }
 
-void SystemForm::on_anodeClicked()
+void SystemForm::on_anodeButton_clicked()
 {
     anodeDialog->exec();
 }
 
-void SystemForm::on_cathodeClicked()
+void SystemForm::on_cathodeButton_clicked()
 {
     cathodeDialog->exec();
+}
+
+void SystemForm::on_systemConfigButton_clicked()
+{
+    systemConfigDialog->exec();
 }

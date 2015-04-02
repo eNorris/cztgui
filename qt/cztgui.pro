@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     globalconfigdialog.cpp \
     anodedialog.cpp \
     cathodedialog.cpp \
-    globals.cpp
+    globals.cpp \
+    systemconfigdialog.cpp
 
 HEADERS  += mainwindow.h \
     patientinfoform.h \
@@ -44,7 +45,8 @@ HEADERS  += mainwindow.h \
     spectdmsharedlib_global.h \
     SpectDM_types.h \
     H3DASIC_types.h \
-    spectdmdll.h
+    spectdmdll.h \
+    systemconfigdialog.h
 
 FORMS    += mainwindow.ui \
     patientinfoform.ui \
@@ -57,7 +59,8 @@ FORMS    += mainwindow.ui \
     fpgadialog.ui \
     globalconfigdialog.ui \
     anodedialog.ui \
-    cathodedialog.ui
+    cathodedialog.ui \
+    systemconfigdialog.ui
 
 # Add the library file for 64-bit Linux, links to BOTH libSpectDMSharedLib.so and libSpectDMSharedLib.so.42
 # The two files are identical, but because of naming conventions, they have to both be there.

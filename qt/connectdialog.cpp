@@ -92,10 +92,6 @@ void ConnectDialog::AddConnectStatusEntry(const std::string &a_Status)
 
 void ConnectDialog::on_connectButton_clicked()
 {
-
-    QString qs;
-    qs.toUtf8().constData();
-
     if(!ui->hostLineEdit->text().isEmpty() && !ui->cameraLineEdit->text().isEmpty())
     {
         //SpectDMDll::SetHostIPAddress(ui->hostLineEdit->text().toStdString().c_str());
@@ -139,38 +135,34 @@ void ConnectDialog::on_disconnectButton_clicked()
 
 void ConnectDialog::UpdateSysConfigItems()
 {
-    /*
+    // TODO
     // set mb multiplexer addr type
-    MBMultiplexerAddrType l_MBMultiplexAddrType = SpectDMDll::GetMBMultiplexerAddressType();
-    ui->mbMultiplexerAddrTypeCombo->setCurrentIndex(static_cast<int>(l_MBMultiplexAddrType));
+    //MBMultiplexerAddrType l_MBMultiplexAddrType = SpectDMDll::GetMBMultiplexerAddressType();
+    //ui->mbMultiplexerAddrTypeCombo->setCurrentIndex(static_cast<int>(l_MBMultiplexAddrType));
 
+    // TODO - Maybe this should be moved to another class and called as a signal?
     // token type
-    SysTokenType l_TokenType = SpectDMDll::GetSysTokenType();
-    QRadioButton* l_TokenTypeToCheck = 0;
+    //SysTokenType l_TokenType = SpectDMDll::GetSysTokenType();
+    //QRadioButton* l_TokenTypeToCheck = 0;
+    //
+    //switch(l_TokenType)
+    //{
+    //    case SysTokenType_DaisyChain:
+    //        l_TokenTypeToCheck = ui->tokenDaisyChainradio;
+    //        break;
+    //    case SysTokenType_GM3Only:
+    //        l_TokenTypeToCheck = ui->tokenGM3radio;
+    //        break;
+    //    default:
+    //        break;
+    //}
+    //
+    //if(l_TokenTypeToCheck)
+    //{
+    //    l_TokenTypeToCheck->setChecked(true);
+    //}
 
-    switch(l_TokenType)
-    {
-        case SysTokenType_DaisyChain:
-        {
-            l_TokenTypeToCheck = ui->tokenDaisyChainradio;
-            break;
-        }
-        case SysTokenType_GM3Only:
-        {
-            l_TokenTypeToCheck = ui->tokenGM3radio;
-            break;
-        }
-        default:
-        {
-            break;
-        }
-    }
-
-    if(l_TokenTypeToCheck)
-    {
-        l_TokenTypeToCheck->setChecked(true);
-    }
-
+    /*
     // Pixel Mapping Mode
     PixelMappingMode l_PixelMappingMode = SpectDMDll::GetPixelMappingMode();
     QRadioButton* l_PixelMapModeToCheck = 0;
@@ -207,6 +199,7 @@ void ConnectDialog::UpdateSysConfigItems()
     // need to check if debug mode is set.
     ui->debugModeCheckBox->setChecked(SpectDMDll::IsDebugModeActive());
     */
+
 }
 
 
