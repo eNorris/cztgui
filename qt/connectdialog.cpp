@@ -1,6 +1,9 @@
 #include "connectdialog.h"
 #include "ui_connectdialog.h"
 
+#include "systemform.h"
+#include "systemconfigdialog.h"
+
 ConnectDialog* ConnectDialog::m_pInstance = NULL;
 bool ConnectDialog::m_Connected = false;
 
@@ -20,6 +23,8 @@ ConnectDialog::ConnectDialog(QWidget *parent) :
     //SpectDMDll::SetOperationErrorFunction(OperationErrorCallbackFunc);
     //SpectDMDll::SetOperationCompleteFunction(OperationCompleteCallbackFunc);
     //SpectDMDll::SetOperationProgressFunction(OperationProgressCallbackFunc);
+
+    // Add connections
 
     connect(ui->clearButton, SIGNAL(clicked()), ui->statusTextEdit, SLOT(clear()));
 }
@@ -106,7 +111,13 @@ void ConnectDialog::on_connectButton_clicked()
             ui->disconnectButton->setEnabled(true);
             //ui->loadFromFileBtn->setEnabled(false);
             //EnableNonConnectTabs(true);
-            UpdateSysConfigItems();
+            //UpdateSysConfigItems();
+
+            const QObject *p = this->parent();
+            const QWidget *pp = static_cast<const QWidget*>(p);
+            const SystemForm *ppp = static_cast<const SystemForm*>(pp);
+
+            static_cast<const SystemForm*>(parent())->systemConfigDialog->UpdateSysConfigItems();
         }
         else
         {
@@ -133,8 +144,8 @@ void ConnectDialog::on_disconnectButton_clicked()
     }
 }
 
-void ConnectDialog::UpdateSysConfigItems()
-{
+//void ConnectDialog::UpdateSysConfigItems()
+//{
     // TODO
     // set mb multiplexer addr type
     //MBMultiplexerAddrType l_MBMultiplexAddrType = SpectDMDll::GetMBMultiplexerAddressType();
@@ -200,7 +211,7 @@ void ConnectDialog::UpdateSysConfigItems()
     ui->debugModeCheckBox->setChecked(SpectDMDll::IsDebugModeActive());
     */
 
-}
+//}
 
 
 
