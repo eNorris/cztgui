@@ -5,6 +5,7 @@
 #include <QDialog>
 
 #include "spectdmdll.h"
+//#include "systemform.h"
 
 namespace Ui {
 class ConnectDialog;
@@ -32,7 +33,7 @@ public:
     static void OperationProgressCallbackFunc(int a_Progress);
 
     void AddConnectStatusEntry(const std::string &a_Status);
-    void UpdateSysConfigItems();
+    //void UpdateSysConfigItems();
     //void AddSysStatusEntry(const std::string &a_Status);  // Should be on another class
 
 private slots:

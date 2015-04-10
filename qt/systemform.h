@@ -5,15 +5,24 @@
 #include <QFileDialog>
 #include <QDebug>
 
+/*
 #include "connectdialog.h"
 #include "fpgadialog.h"
 #include "globalconfigdialog.h"
 #include "anodedialog.h"
 #include "cathodedialog.h"
 #include "systemconfigdialog.h"
+*/
+
+class ConnectDialog;
+class FpgaDialog;
+class GlobalConfigDialog;
+class AnodeDialog;
+class CathodeDialog;
+class SystemConfigDialog;
 
 namespace Ui {
-class SystemForm;
+    class SystemForm;
 }
 
 class SystemForm : public QWidget
@@ -24,15 +33,17 @@ public:
     explicit SystemForm(QWidget *parent = 0);
     ~SystemForm();
 
-private:
-    Ui::SystemForm *ui;
-
     ConnectDialog *connectDialog;
     FpgaDialog *fpgaDialog;
     GlobalConfigDialog *configDialog;
     AnodeDialog *anodeDialog;
     CathodeDialog *cathodeDialog;
     SystemConfigDialog *systemConfigDialog;
+
+private:
+    Ui::SystemForm *ui;
+
+
 
 protected slots:
     void on_browseButton_clicked();

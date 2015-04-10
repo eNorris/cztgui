@@ -1,6 +1,13 @@
 #include "systemform.h"
 #include "ui_systemform.h"
 
+#include "connectdialog.h"
+#include "fpgadialog.h"
+#include "globalconfigdialog.h"
+#include "anodedialog.h"
+#include "cathodedialog.h"
+#include "systemconfigdialog.h"
+
 SystemForm::SystemForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SystemForm)
