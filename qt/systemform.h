@@ -5,14 +5,16 @@
 #include <QFileDialog>
 #include <QDebug>
 
-/*
-#include "connectdialog.h"
-#include "fpgadialog.h"
-#include "globalconfigdialog.h"
-#include "anodedialog.h"
-#include "cathodedialog.h"
-#include "systemconfigdialog.h"
-*/
+#include <QTimer>
+#include <QThread>
+
+//#include "utils.h"
+#include "SimEngine.h"
+
+// From qcustomplot
+class QCPColorMap;
+class QCPColorScale;
+class QCPMarginGroup;
 
 class ConnectDialog;
 class FpgaDialog;
@@ -42,8 +44,17 @@ public:
 
 private:
     Ui::SystemForm *ui;
+    QTimer dataTimer;
 
+    int nx, ny;
+    QCPColorMap *colorMap;
+    QCPColorScale *colorScale;
+    QCPMarginGroup *marginGroup;
 
+    SimEngine *engine;
+
+    const static float FPS_LIMIT = 30.0;
+    bool fpsBound;
 
 protected slots:
     void on_browseButton_clicked();
@@ -53,6 +64,10 @@ protected slots:
     void on_anodeButton_clicked();
     void on_cathodeButton_clicked();
     void on_systemConfigButton_clicked();
+
+public slots:
+    void updatesurf(double t, double **data);
+    void fpsUnbound();
 };
 
 #endif // SYSTEMFORM_H

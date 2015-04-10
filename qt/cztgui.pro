@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = cztgui
 TEMPLATE = app
@@ -26,7 +26,10 @@ SOURCES += main.cpp\
     anodedialog.cpp \
     cathodedialog.cpp \
     globals.cpp \
-    systemconfigdialog.cpp
+    systemconfigdialog.cpp \
+    ClickablePlot.cpp \
+    qcustomplot.cpp \
+    SimEngine.cpp
 
 HEADERS  += mainwindow.h \
     patientinfoform.h \
@@ -46,7 +49,10 @@ HEADERS  += mainwindow.h \
     SpectDM_types.h \
     H3DASIC_types.h \
     spectdmdll.h \
-    systemconfigdialog.h
+    systemconfigdialog.h \
+    qcustomplot.h \
+    SimEngine.h \
+    clickableplot.h
 
 FORMS    += mainwindow.ui \
     patientinfoform.ui \
