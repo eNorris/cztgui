@@ -133,6 +133,6 @@ void SimEngine::save()
     }
     else
     {
-        QMessageBox::warning(this, "SpectDM", SpectDMDll::GetLastError().c_str());
+        //QMessageBox::warning(this, "SpectDM", SpectDMDll::GetLastError().c_str());
     }
 }
