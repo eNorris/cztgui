@@ -6,6 +6,16 @@ CathodeDialog::CathodeDialog(QWidget *parent) :
     ui(new Ui::CathodeDialog)
 {
     ui->setupUi(this);
+
+    for(int i = 0; i < 2; i++)
+    {
+        ui->cathodeChannelNoCombo->addItem(QString("%2").arg((i + 1)));
+    }
+    UpdateHGAffectedWidgets(false);
+
+    ui->individualCathodeRadio->setChecked(true);
+
+
 }
 
 CathodeDialog::~CathodeDialog()

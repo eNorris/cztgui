@@ -25,6 +25,7 @@ SystemForm::SystemForm(QWidget *parent) :
     systemConfigDialog = new SystemConfigDialog(this);
 
     // From mainwindow.cpp
+    /*
     for(int i = 0; i < 128; i++)
     {
         anodeDialog->ui->anodeChannelNoCombo->addItem(QString("%1").arg(i + 1));
@@ -32,25 +33,30 @@ SystemForm::SystemForm(QWidget *parent) :
         //ui->anodeChannelNoCombo->addItem(QString("%1").arg(i + 1));
         //ui->anodeChannelMonitorCombo->addItem(QString("%1").arg(i + 1));
     }
+    */
 
+    /*
     for(int i = 0; i < 2; i++)
     {
         ui->cathodeChannelNoCombo->addItem(QString("%2").arg((i + 1)));
     }
+    */
 
-    UpdateHGAffectedWidgets(false);
+    // anode and cathode
+    //UpdateHGAffectedWidgets(false);
 
-    ui->individualAnodeRadio->setChecked(true);
-    ui->individualCathodeRadio->setChecked(true);
+    /*
+    ui->individualAnodeRadio->setChecked(true);  // anode
+    ui->individualCathodeRadio->setChecked(true); // cathode
 
-    ui->disconnectButton->setEnabled(false);
-    ui->stopSysBtn->setEnabled(false);
-    ui->startCollectBtn->setEnabled(false);
-    ui->stopCollectBtn->setEnabled(false);
+    ui->disconnectButton->setEnabled(false);  // connect
+    ui->stopSysBtn->setEnabled(false);  //sysconfig
+    ui->startCollectBtn->setEnabled(false);  //sysconfig
+    ui->stopCollectBtn->setEnabled(false);  //sysconfig
 
-    ui->DACScombo->setEnabled(false);
-    ui->cathEnergyTimingCombo->setEnabled(false);
-    ui->anodeChannelMonitorCombo->setEnabled(false);
+    ui->DACScombo->setEnabled(false);  //globalconfig
+    ui->cathEnergyTimingCombo->setEnabled(false);   //cathode
+    ui->anodeChannelMonitorCombo->setEnabled(false);  //andoe
 
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
 
@@ -61,6 +67,7 @@ SystemForm::SystemForm(QWidget *parent) :
 
     // disable all non-connect tabs until we connect
     EnableNonConnectTabs(false);
+    */
 
     //connect(ui->browseButton, SIGNAL(clicked()), this, SLOT(on_browseClicked()));
     //connect(ui->connectButton, SIGNAL(clicked()), this, SLOT(on_connectClicked()));

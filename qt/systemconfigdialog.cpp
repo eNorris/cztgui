@@ -12,6 +12,10 @@ SystemConfigDialog::SystemConfigDialog(QWidget *parent) :
     m_pInstance = this;
 
     SpectDMDll::SetSysStatusFunction(SysStatusCallbackFunc);
+
+    ui->stopSysBtn->setEnabled(false);
+    ui->startCollectBtn->setEnabled(false);
+    ui->stopCollectBtn->setEnabled(false);
 }
 
 SystemConfigDialog::~SystemConfigDialog()

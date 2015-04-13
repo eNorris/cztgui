@@ -27,6 +27,8 @@ ConnectDialog::ConnectDialog(QWidget *parent) :
     // Add connections
 
     connect(ui->clearButton, SIGNAL(clicked()), ui->statusTextEdit, SLOT(clear()));
+
+    ui->disconnectButton->setEnabled(false);
 }
 
 ConnectDialog::~ConnectDialog()

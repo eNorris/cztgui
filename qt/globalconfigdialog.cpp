@@ -6,6 +6,19 @@ GlobalConfigDialog::GlobalConfigDialog(QWidget *parent) :
     ui(new Ui::GlobalConfigDialog)
 {
     ui->setupUi(this);
+
+    for(int i = 0; i < 128; i++)
+    {
+        //ui->anodeChannelNoCombo->addItem(QString("%1").arg(i + 1));
+        ui->anodeChannelMonitorCombo->addItem(QString("%1").arg(i + 1));
+        //ui->anodeChannelNoCombo->addItem(QString("%1").arg(i + 1));
+        //ui->anodeChannelMonitorCombo->addItem(QString("%1").arg(i + 1));
+
+    }
+
+    ui->DACScombo->setEnabled(false);
+    ui->anodeChannelMonitorCombo->setEnabled(false);
+    ui->cathEnergyTimingCombo->setEnabled(false);
 }
 
 GlobalConfigDialog::~GlobalConfigDialog()
