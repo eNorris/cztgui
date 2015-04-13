@@ -22,6 +22,8 @@ public:
 public:
     Ui::CathodeDialog *ui;
 
+    void loadDefaults();
+
 public:
     void UpdateASICCathodeItems();
     void UpdateHGAffectedWidgets(bool a_HGSet);

@@ -19,6 +19,7 @@ class GlobalConfigDialog : public QDialog
 public:
     explicit GlobalConfigDialog(QWidget *parent = 0);
     ~GlobalConfigDialog();
+    void loadDefaults();
 
 private:
     Ui::GlobalConfigDialog *ui;

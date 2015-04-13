@@ -19,11 +19,21 @@ GlobalConfigDialog::GlobalConfigDialog(QWidget *parent) :
     ui->DACScombo->setEnabled(false);
     ui->anodeChannelMonitorCombo->setEnabled(false);
     ui->cathEnergyTimingCombo->setEnabled(false);
+
+
 }
 
 GlobalConfigDialog::~GlobalConfigDialog()
 {
     delete ui;
+}
+
+void GlobalConfigDialog::loadDefaults()
+{
+    ui->disableMultiResetAcqModeCheck->setChecked(true);
+    ui->singleEventModeCheck->setChecked(true);
+    ui->channelGain_60Radio->setChecked(true);
+    on_ASICGlobal_UpdateASICButton_clicked();
 }
 
 void GlobalConfigDialog::on_ASICGlobal_UpdateASICButton_clicked()

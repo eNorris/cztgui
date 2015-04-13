@@ -23,6 +23,14 @@ CathodeDialog::~CathodeDialog()
     delete ui;
 }
 
+void CathodeDialog::loadDefaults()
+{
+    // Load defaults
+    ui->allCathodesRadio->setChecked(true);
+    ui->cathodeChannelMaskCheck->setChecked(true);
+    on_updateCathodeChannelButton_clicked();
+}
+
 void CathodeDialog::UpdateASICCathodeItems()
 {
     // could stick top two in a function or use for loop

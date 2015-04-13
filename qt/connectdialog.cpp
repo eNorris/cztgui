@@ -27,12 +27,12 @@ ConnectDialog::ConnectDialog(QWidget *parent) :
     // Add connections
 
     connect(ui->clearButton, SIGNAL(clicked()), ui->statusTextEdit, SLOT(clear()));
-
     ui->disconnectButton->setEnabled(false);
 }
 
 ConnectDialog::~ConnectDialog()
 {
+    SpectDMDll::StopSys();
     delete ui;
 }
 
@@ -120,6 +120,8 @@ void ConnectDialog::on_connectButton_clicked()
             //const SystemForm *ppp = static_cast<const SystemForm*>(pp);
 
             static_cast<const SystemForm*>(parent())->systemConfigDialog->UpdateSysConfigItems();
+            SpectDMDll::StartSys();
+            emit connected();
         }
         else
         {

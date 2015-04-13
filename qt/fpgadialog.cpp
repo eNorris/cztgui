@@ -6,11 +6,18 @@ FpgaDialog::FpgaDialog(QWidget *parent) :
     ui(new Ui::FpgaDialog)
 {
     ui->setupUi(this);
+
 }
 
 FpgaDialog::~FpgaDialog()
 {
     delete ui;
+}
+
+void FpgaDialog::loadDefaults()
+{
+    ui->sparsifiedRadio->setChecked(true);
+    on_UpdateGMButton_clicked();
 }
 
 void FpgaDialog::on_UpdateGMButton_clicked()
@@ -46,6 +53,7 @@ void FpgaDialog::on_UpdateGMButton_clicked()
             l_Success = false;
         }
     }
+    qDebug() << "1";
 
     if(l_Success)
     {
@@ -54,7 +62,7 @@ void FpgaDialog::on_UpdateGMButton_clicked()
             l_Success = false;
         }
     }
-
+    qDebug() << "2";
     if(l_Success)
     {
         if(!SpectDMDll::SetTimestampResolution(ui->timestampResSpinner->value()))
@@ -78,7 +86,7 @@ void FpgaDialog::on_UpdateGMButton_clicked()
             l_Success = false;
         }
     }
-
+    qDebug() << "3";
     if(l_Success)
     {
         QString l_DefaultGMStr = ui->defaultGMCombo->currentText();

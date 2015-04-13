@@ -128,13 +128,24 @@ SystemForm::SystemForm(QWidget *parent) :
     //dataTimer.start(30); // Interval 0 means to refresh as fast as possible
     //connect()
 
+    if(SpectDMDll::SetGMUpdateType(GMUpdateType_Broadcast))
+    {
+        // need to disable all single GM widgets
+        //EnableSingleGMWidgets(false);
+    }
+    else
+    {
+        QMessageBox::warning(this, "SpectDM", SpectDMDll::GetLastError().c_str());
+    }
+
     connect(configDialog, SIGNAL(updateAnodeItems()), this, SLOT(doAnodeUpdate()));
     connect(configDialog, SIGNAL(updateCathodeItems()), this, SLOT(doCathodeUpdate()));
     connect(configDialog, SIGNAL(updateAnodeCathodeHG(bool)), this, SLOT(doAnodeCathodeHG(bool)));
 
+    connect(connectDialog, SIGNAL(connected()), this, SLOT(loadDefaults()));
 
-    connect(ui->customPlot, SIGNAL(addmousemoved(int, int)), engine, SLOT(adddiffuse(int,int)), Qt::DirectConnection);
-    connect(ui->customPlot, SIGNAL(submousemoved(int, int)), engine, SLOT(subdiffuse(int,int)), Qt::DirectConnection);
+    //connect(ui->customPlot, SIGNAL(addmousemoved(int, int)), engine, SLOT(adddiffuse(int,int)), Qt::DirectConnection);
+    //connect(ui->customPlot, SIGNAL(submousemoved(int, int)), engine, SLOT(subdiffuse(int,int)), Qt::DirectConnection);
     //connect(ui->actionStop, SIGNAL(triggered()), engine, SLOT(stop()), Qt::DirectConnection);
 
     //connect(ui->customPlot, SIGNAL(wheelscroll(int)), ui->verticalSlider, SLOT(autoscroll(int)));
@@ -170,6 +181,20 @@ SystemForm::~SystemForm()
     delete anodeDialog;
     delete cathodeDialog;
     delete systemConfigDialog;
+}
+
+void SystemForm::loadDefaults()
+{
+    delay(500);
+    systemConfigDialog->loadDefaults();
+    delay(500);
+    configDialog->loadDefaults();
+    delay(500);
+    fpgaDialog->loadDefaults();
+    delay(500);
+    anodeDialog->loadDefaults();
+    delay(500);
+    cathodeDialog->loadDefaults();
 }
 
 void SystemForm::on_browseButton_clicked()
@@ -321,6 +346,13 @@ void SystemForm::updatesurf(double t, double **data)
 void SystemForm::fpsUnbound()
 {
     fpsBound = false;
+}
+
+void SystemForm::delay(int millisecs)
+{
+    QTime dieTime = QTime::currentTime().addMSecs(millisecs);
+    while(QTime::currentTime() < dieTime);
+        //QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 
 

@@ -41,6 +41,9 @@ public:
     CathodeDialog *cathodeDialog;
     SystemConfigDialog *systemConfigDialog;
 
+protected:
+    void delay(int millisecs);
+
 private:
     Ui::SystemForm *ui;
     QTimer dataTimer;
@@ -72,6 +75,7 @@ protected slots:
 public slots:
     void updatesurf(double t, double **data);
     void fpsUnbound();
+    void loadDefaults();
 };
 
 #endif // SYSTEMFORM_H

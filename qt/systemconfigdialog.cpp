@@ -23,6 +23,13 @@ SystemConfigDialog::~SystemConfigDialog()
     delete ui;
 }
 
+void SystemConfigDialog::loadDefaults()
+{
+    //Load defaults
+    ui->pixelMapGlobalRadio->setChecked(true);
+    on_sendConfigButton_clicked();
+}
+
 void SystemConfigDialog::SysStatusCallbackFunc(const char *a_Data)
 {
     GetInstance()->AddSysStatusEntry(a_Data);

@@ -17,12 +17,23 @@ AnodeDialog::AnodeDialog(QWidget *parent) :
     }
     UpdateHGAffectedWidgets(false);
     ui->individualAnodeRadio->setChecked(true);
-
 }
 
 AnodeDialog::~AnodeDialog()
 {
     delete ui;
+}
+
+void AnodeDialog::loadDefaults()
+{
+    // Load defaults
+    ui->allAnodesRadio->setChecked(true);
+    on_updateAnodeChannelButton_clicked();
+
+    ui->anodePeakDetectTimoutCombo->setCurrentIndex(3);
+    ui->anodePosEnergyThreshSpinner->setValue(195);
+    ui->anodeNegEnergyThreshSpinner->setValue(195);
+    on_ASICAnode_UpdateASICButton_clicked();
 }
 
 void AnodeDialog::UpdateASICAnodeItems()

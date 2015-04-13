@@ -29,6 +29,8 @@ public:
 
     void UpdateGMPixelMapCheckbox();
 
+    void loadDefaults();
+
 private:
     Ui::SystemConfigDialog *ui;
 

@@ -64,10 +64,12 @@ void SimEngine::run(int imgct, float exp, float lat)
 
         qDebug() << "Saving";
         timer.restart();
-        QString filename = QString("~/cztgui/data/out%1.csv").arg(i);
-        savePhotons(filename.toStdString().c_str());   //"~/cztgui/data/out.csv");
+        QString filename = QString("/usr/local/home/etnc6d/research/cztgui/data/out%1.csv").arg(i);
+        savePhotons(filename.toStdString().c_str());
         qDebug() << "loading";
-        loadPhotons("/home/stir/cztgui/data/test_100114.csv", data);
+        delay(500);
+        //loadPhotons(filename, data);
+        loadPhotons("/usr/local/home/etnc6d/research/cztgui/data/test_100114.csv", data);
         qDebug() << "Time to save & load: " << timer.elapsed();
 
         QString str = "";

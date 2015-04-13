@@ -22,6 +22,7 @@ public:
 public:
     void UpdateASICAnodeItems();
     void UpdateHGAffectedWidgets(bool a_HGSet);
+    void loadDefaults();
 
 public:
     Ui::AnodeDialog *ui;

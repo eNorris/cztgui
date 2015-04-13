@@ -36,6 +36,9 @@ public:
     //void UpdateSysConfigItems();
     //void AddSysStatusEntry(const std::string &a_Status);  // Should be on another class
 
+signals:
+    void connected();
+
 private slots:
     void on_connectButton_clicked();
     void on_disconnectButton_clicked();

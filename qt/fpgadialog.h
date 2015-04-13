@@ -5,6 +5,7 @@
 
 #include <QDialog>
 #include <QMessageBox>
+#include <QDebug>
 
 #include "spectdmdll.h"
 
@@ -19,6 +20,7 @@ class FpgaDialog : public QDialog
 public:
     explicit FpgaDialog(QWidget *parent = 0);
     ~FpgaDialog();
+    void loadDefaults();
 
 private:
     Ui::FpgaDialog *ui;

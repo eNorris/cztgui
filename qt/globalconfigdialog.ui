@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1163</width>
-    <height>449</height>
+    <height>445</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -551,9 +551,9 @@
  <connections/>
  <buttongroups>
   <buttongroup name="ASICTimingUnipolarGainBtnGroup"/>
-  <buttongroup name="ASICTimingBipolarGainBtnGroup"/>
-  <buttongroup name="ASICChannelGainBtnGroup"/>
   <buttongroup name="ASICReadoutModeBtnGroup"/>
+  <buttongroup name="ASICChannelGainBtnGroup"/>
+  <buttongroup name="ASICTimingBipolarGainBtnGroup"/>
   <buttongroup name="ASICMultipleFireSuppressBtnGroup"/>
   <buttongroup name="ASICInternalLeakageCurrGenBtnGroup"/>
  </buttongroups>
