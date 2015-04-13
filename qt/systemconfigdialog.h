@@ -32,6 +32,8 @@ public:
 private:
     Ui::SystemConfigDialog *ui;
 
+
+
 public slots:
     void UpdateSysConfigItems();
 
@@ -40,6 +42,8 @@ public slots:
 
     void on_stopSysBtn_clicked();
     void on_startSysBtn_clicked();
+
+    void on_sendConfigButton_clicked();
 };
 
 #endif // SYSTEMCONFIGDIALOG_H

@@ -8,13 +8,8 @@
 #include <QTimer>
 #include <QThread>
 
-//#include "utils.h"
 #include "SimEngine.h"
 
-// From qcustomplot
-class QCPColorMap;
-class QCPColorScale;
-class QCPMarginGroup;
 
 class ConnectDialog;
 class FpgaDialog;
@@ -32,6 +27,10 @@ class SystemForm : public QWidget
     Q_OBJECT
 
 public:
+    static const int NX = 22;
+    static const int NY = 22;
+
+public:
     explicit SystemForm(QWidget *parent = 0);
     ~SystemForm();
 
@@ -46,15 +45,13 @@ private:
     Ui::SystemForm *ui;
     QTimer dataTimer;
 
-    int nx, ny;
-    QCPColorMap *colorMap;
-    QCPColorScale *colorScale;
-    QCPMarginGroup *marginGroup;
-
     SimEngine *engine;
 
     const static float FPS_LIMIT = 30.0;
     bool fpsBound;
+
+signals:
+    void startRunning(int, float, float);
 
 protected slots:
     void on_browseButton_clicked();
@@ -64,6 +61,13 @@ protected slots:
     void on_anodeButton_clicked();
     void on_cathodeButton_clicked();
     void on_systemConfigButton_clicked();
+
+    void on_startButton_clicked();
+    void on_stopButton_clicked();
+
+    void doAnodeUpdate();
+    void doCathodeUpdate();
+    void doAnodeCathodeHG(bool hgSet);
 
 public slots:
     void updatesurf(double t, double **data);

@@ -6,8 +6,14 @@
 #include <QObject>
 #include <QThread>
 #include <QDebug>
+#include <QTime>
+#include <QCoreApplication>
+#include <QString>
+#include <QFile>
+#include <QMessageBox>
 
 #include "spectdmdll.h"
+#include <limits>
 
 
 class SimEngine : public QObject
@@ -22,6 +28,7 @@ public:
 
     void build();
     void build(const int nx, const int ny);
+    void zeroData();
 
     double& operator()(const int xIndex, const int yIndex);
 
@@ -34,9 +41,12 @@ public slots:
     void subdiffuse(int x, int y);
     void setPressure(double p);
     void stop();
-    void run();
+    void run(int imgct, float exp, float lat);
 
-    void save();
+    void savePhotons(QString str);
+    void loadPhotons(QString str, double **data);
+
+    void delay(int millisecs);
 
 protected:
     bool built;

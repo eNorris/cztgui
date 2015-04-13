@@ -8,6 +8,9 @@
 #include "cathodedialog.h"
 #include "systemconfigdialog.h"
 
+#include "clickableplot.h"
+
+
 SystemForm::SystemForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::SystemForm)
@@ -34,50 +37,55 @@ SystemForm::SystemForm(QWidget *parent) :
     // Set up the renderer
     fpsBound = false;
 
-    QCustomPlot *customPlot = ui->customPlot;
-    colorScale = new QCPColorScale(ui->customPlot);
-    marginGroup = new QCPMarginGroup(ui->customPlot);
+    ClickablePlot *customPlot = ui->customPlot;
+    customPlot->setDims(NX, NY);
+    //colorScale = new QCPColorScale(ui->customPlot);
+    //marginGroup = new QCPMarginGroup(ui->customPlot);
 
-    engine = new SimEngine(22, 22);  // Pixel array
+    engine = new SimEngine(NX, NY);  // Pixel array
 
-    customPlot->axisRect()->setupFullAxesBox(true);
-    customPlot->xAxis->setLabel("x");
-    customPlot->yAxis->setLabel("y");
-    customPlot->addGraph();
+    //customPlot->axisRect()->setupFullAxesBox(true);
+    //customPlot->xAxis->setLabel("x");
+    //customPlot->yAxis->setLabel("y");
+    //customPlot->addGraph();
 
     // set up the QCPColorMap:
-    nx = 22;
-    ny = 22;
-    colorMap = new QCPColorMap(customPlot->xAxis, customPlot->yAxis);
-    customPlot->addPlottable(colorMap);
-    ui->customPlot->setColorMap(colorMap);
+    //nx = 22;
+    //ny = 22;
+    //colorMap = new QCPColorMap(customPlot->xAxis, customPlot->yAxis);
+    //customPlot->addPlottable(colorMap);
+    //ui->customPlot->setColorMap(colorMap);
 
-    colorMap->data()->setSize(nx, ny); // we want the color map to have nx * ny data points
-    colorMap->data()->setRange(QCPRange(-4, 4), QCPRange(-4, 4)); // and span the coordinate range -4..4 in both key (x) and value (y) dimensions
+    //colorMap->data()->setSize(NX, NY); // we want the color map to have nx * ny data points
+    //colorMap->data()->setRange(QCPRange(0, NX), QCPRange(0, NY)); // and span the coordinate range -4..4 in both key (x) and value (y) dimensions
     // now we assign some data, by accessing the QCPColorMapData instance of the color map:
 
-    ui->customPlot->plotLayout()->addElement(0, 1, colorScale); // add it to the right of the main axis rect
-    colorScale->setType(QCPAxis::atRight); // scale shall be vertical bar with tick/axis labels right (actually atRight is already the default)
-    colorMap->setColorScale(colorScale); // associate the color map with the color scale
-    colorScale->axis()->setLabel("Magnetic Field Strength");
+    //ui->customPlot->plotLayout()->addElement(0, 1, colorScale); // add it to the right of the main axis rect
+    //colorScale->setType(QCPAxis::atRight); // scale shall be vertical bar with tick/axis labels right (actually atRight is already the default)
+    //colorMap->setColorScale(colorScale); // associate the color map with the color scale
+    //colorScale->axis()->setLabel("Intensity [counts]");
 
     // make sure the axis rect and color scale synchronize their bottom and top margins (so they line up):
     //QCPMarginGroup *marginGroup = new QCPMarginGroup(ui->customPlot);
-    ui->customPlot->axisRect()->setMarginGroup(QCP::msBottom|QCP::msTop, marginGroup);
-    colorScale->setMarginGroup(QCP::msBottom|QCP::msTop, marginGroup);
+    //ui->customPlot->axisRect()->setMarginGroup(QCP::msBottom|QCP::msTop, marginGroup);
+    //colorScale->setMarginGroup(QCP::msBottom|QCP::msTop, marginGroup);
 
     // set the color gradient of the color map to one of the presets:
     //colorMap->setGradient(QCPColorGradient::gpPolar);
-    colorMap->setGradient(QCPColorGradient::gpJet);
+    //colorMap->setGradient(QCPColorGradient::gpJet);
     //colorMap->rescaleDataRange();  // Put this in the real time loop to auto scale
-    colorMap->setDataRange(QCPRange(0.0, 1.0));
+    //colorMap->setDataRange(QCPRange(0.0, 1.0));
 
     // rescale the key (x) and value (y) axes so the whole color map is visible:
-    ui->customPlot->rescaleAxes();
+    //ui->customPlot->rescaleAxes();
 
     //connect(&dataTimer, SIGNAL(timeout()), this, SLOT(rt2DDataSlot()));
     //dataTimer.start(30); // Interval 0 means to refresh as fast as possible
     //connect()
+
+    connect(configDialog, SIGNAL(updateAnodeItems()), this, SLOT(doAnodeUpdate()));
+    connect(configDialog, SIGNAL(updateCathodeItems()), this, SLOT(doCathodeUpdate()));
+    connect(configDialog, SIGNAL(updateAnodeCathodeHG(bool)), this, SLOT(doAnodeCathodeHG(bool)));
 
 
     connect(ui->customPlot, SIGNAL(addmousemoved(int, int)), engine, SLOT(adddiffuse(int,int)), Qt::DirectConnection);
@@ -95,7 +103,8 @@ SystemForm::SystemForm(QWidget *parent) :
     connect(engine, SIGNAL(finished()), thread, SLOT(quit()));
     connect(engine, SIGNAL(finished()), engine, SLOT(deleteLater()));
     //connect(engine, SIGNAL(error(QString)), this, SLOT(errorString(QString)));
-    connect(thread, SIGNAL(started()), engine, SLOT(run()));
+    //connect(thread, SIGNAL(started()), engine, SLOT(run()));
+    connect(this, SIGNAL(startRunning(int,float,float)), engine, SLOT(run(int, float, float)));
     connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
     engine->moveToThread(thread);
     thread->start();
@@ -159,10 +168,39 @@ void SystemForm::on_systemConfigButton_clicked()
     systemConfigDialog->exec();
 }
 
+void SystemForm::on_startButton_clicked()
+{
+    emit startRunning(
+                ui->imageCountSpinBox->value(),
+                ui->exposureSpinBox->value(),
+                ui->latencySpinBox->value());
+}
+
+void SystemForm::on_stopButton_clicked()
+{
+
+}
+
+void SystemForm::doAnodeUpdate()
+{
+    anodeDialog->UpdateASICAnodeItems();
+}
+
+void SystemForm::doCathodeUpdate()
+{
+    cathodeDialog->UpdateASICCathodeItems();
+}
+
+void SystemForm::doAnodeCathodeHG(bool hgSet)
+{
+    anodeDialog->UpdateHGAffectedWidgets(hgSet);
+    cathodeDialog->UpdateHGAffectedWidgets(hgSet);
+}
+
 void SystemForm::updatesurf(double t, double **data)
 {
 
-    //qDebug() << "updating surf t = " << t;
+    qDebug() << "updating surf t = " << t;
 
     static int simcount = 0;
     simcount++;
@@ -175,36 +213,45 @@ void SystemForm::updatesurf(double t, double **data)
     double key = QDateTime::currentDateTime().toMSecsSinceEpoch()/1000.0;
 #endif
 
-    static double lastPointKey = key;
+    ClickablePlot *plot = ui->customPlot;
+
+    static double lastPointKey = key-1;
     double total = 0.0;
     if (key-lastPointKey > 0.01) // at most add point every 10 ms
     {
-        //double x, y, z;
-
-        for (int xIndex=0; xIndex<nx; ++xIndex)
+        for (int xIndex=0; xIndex<NX; ++xIndex)
         {
-          for (int yIndex=0; yIndex<ny; ++yIndex)
+          for (int yIndex=0; yIndex<NY; ++yIndex)
           {
-              colorMap->data()->setCell(xIndex, yIndex, data[xIndex][yIndex]);
+              plot->setValue(xIndex, yIndex, data[xIndex][yIndex]);
+              //colorMap->data()->setCell(xIndex, yIndex, data[xIndex][yIndex]);
               total += data[xIndex][yIndex];
-            //colorMap->data()->cellToCoord(xIndex, yIndex, &x, &y);
-            //double xx = qSin(x + 5 * t);
-            //int s = sgn(xx);
-            //z = qPow(qAbs(xx), t/10.0) * qPow(qAbs(qSin(y)), t/10.0);
-            //colorMap->data()->setCell(xIndex, yIndex, z);
           }
         }
-        total /= (nx * ny);
-        //ui->progressBar->setValue(int(1000 * total));
+        total /= (NX * NY);
+        qDebug() << "SystemForm[206]: total = " << total;
 
         // set the color gradient of the color map to one of the presets:
         //colorMap->setGradient(QCPColorGradient::gpPolar);
         //colorMap->rescaleDataRange();
+        plot->rescale();
 
         lastPointKey = key;
     }
+
+    qDebug() << "At the surface updater:";
+    QString str = "";
+    for(int i = 0; i < NY; i++)
+    {
+        for(int j = 0; j < NX; j++)
+            str.append(QString::number(data[i][j]) + "   ");
+        str.append("\n");
+    }
+    qDebug() << str;
+
     // make key axis range scroll with the data (at a constant range size of 8):
     //ui->customPlot->xAxis->setRange(key+0.25, 8, Qt::AlignRight);
+    qDebug() << "replotted";
     ui->customPlot->replot();
 
     // calculate frames per second:
@@ -230,3 +277,5 @@ void SystemForm::fpsUnbound()
 {
     fpsBound = false;
 }
+
+

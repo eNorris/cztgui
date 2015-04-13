@@ -1,7 +1,12 @@
 #ifndef FPGADIALOG_H
 #define FPGADIALOG_H
 
+#include "globals.h"
+
 #include <QDialog>
+#include <QMessageBox>
+
+#include "spectdmdll.h"
 
 namespace Ui {
 class FpgaDialog;
@@ -17,6 +22,9 @@ public:
 
 private:
     Ui::FpgaDialog *ui;
+
+protected slots:
+    void on_UpdateGMButton_clicked();
 };
 
 #endif // FPGADIALOG_H

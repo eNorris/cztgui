@@ -171,3 +171,112 @@ void SystemConfigDialog::on_stopSysBtn_clicked()
         QMessageBox::warning(this, "SpectDM", SpectDMDll::GetLastError().c_str());
     }
 }
+
+void SystemConfigDialog::on_sendConfigButton_clicked()
+{
+    // check our controls and set things
+    bool l_Success = true;
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetMBMultiplexerAddressType(static_cast<MBMultiplexerAddrType>(ui->mbMultiplexerAddrTypeCombo->currentIndex())))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetPacketTransferRate(ui->pktTransferSpinner->value()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        l_Success = SpectDMDll::SetDebugMode(ui->debugModeCheckBox->isChecked());
+    }
+
+    if(l_Success)
+    {
+        if(ui->SysTokenTypeBtnGroup->checkedButton())
+        {
+            SysTokenType l_TokenType = SysTokenType_Undefined;
+
+            if(ui->tokenDaisyChainradio->isChecked())
+            {
+                l_TokenType = SysTokenType_DaisyChain;
+            }
+            else if(ui->tokenGM3radio->isChecked())
+            {
+                l_TokenType = SysTokenType_GM3Only;
+            }
+
+            if(!SpectDMDll::SetSysTokenType(l_TokenType))
+            {
+                l_Success = false;
+            }
+        }
+    }
+
+    if(l_Success)
+    {
+        PixelMappingMode l_PixelMappingMode = PixelMappingMode_Undefined;
+
+        if(ui->pixelMapGMBasedRadio->isChecked())
+        {
+            l_PixelMappingMode = PixelMappingMode_GMBased;
+        }
+        else if(ui->pixelMapGlobalRadio->isChecked())
+        {
+            l_PixelMappingMode = PixelMappingMode_Global;
+        }
+
+        if(SpectDMDll::SetPixelMappingMode(l_PixelMappingMode))
+        {
+            // update GM enable pixel mapping enable state after updating pixel mapping mode
+            UpdateGMPixelMapCheckbox();
+        }
+        else
+        {
+            l_Success = false;
+        }
+    }
+
+//    if(l_Success)
+//    {
+//        if(ui->gmUpdateBtnGroup->checkedButton())
+//        {
+//            GMUpdateType l_Type = GMUpdateType_Undefined;
+
+//            if(ui->updateSingleGMRadio->isChecked())
+//            {
+//                l_Type = GMUpdateType_SingleGM;
+//            }
+//            else if(ui->updateBroadcastRadio->isChecked())
+//            {
+//                l_Type = GMUpdateType_Broadcast;
+//            }
+
+//            if(!SpectDMDll::SetGMUpdateType(l_Type))
+//            {
+//                l_Success = false;
+//            }
+//        }
+//    }
+
+    // If camera update mode is auto then functions above would have sent data down to device
+    if(l_Success && SpectDMDll::GetCameraUpdateMode() == CameraUpdateMode_Manual)
+    {
+        l_Success = SpectDMDll::SendGBEControlData();
+    }
+
+    if(!l_Success)
+    {
+        QMessageBox::warning(this, "SpectDM", SpectDMDll::GetLastError().c_str());
+    }
+}
+
+
+

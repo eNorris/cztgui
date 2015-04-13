@@ -45,12 +45,12 @@ void ConnectDialog::ConnectStatusCallbackFunc(const char* a_Data)
 //    GetInstance()->AddSysStatusEntry(a_Data);
 //}
 
-void ConnectDialog::ToolbarStatusCallbackFunc(const char *a_Data)
+void ConnectDialog::ToolbarStatusCallbackFunc(const char *)
 {
     //GetInstance()->ui->statusBar->showMessage(a_Data);
 }
 
-void ConnectDialog::OperationErrorCallbackFunc(const char* a_Data)
+void ConnectDialog::OperationErrorCallbackFunc(const char *)
 {
     //GetInstance()->CloseProgressDlg();
     //GetInstance()->ReportWarning(a_Data);
@@ -61,7 +61,7 @@ void ConnectDialog::OperationCompleteCallbackFunc()
     //GetInstance()->CloseProgressDlg();
 }
 
-void ConnectDialog::OperationProgressCallbackFunc(int a_Progress)
+void ConnectDialog::OperationProgressCallbackFunc(int)
 {
     //emit GetInstance()->progressUpdate(a_Progress);
 }
@@ -113,9 +113,9 @@ void ConnectDialog::on_connectButton_clicked()
             //EnableNonConnectTabs(true);
             //UpdateSysConfigItems();
 
-            const QObject *p = this->parent();
-            const QWidget *pp = static_cast<const QWidget*>(p);
-            const SystemForm *ppp = static_cast<const SystemForm*>(pp);
+            //const QObject *p = this->parent();
+            //const QWidget *pp = static_cast<const QWidget*>(p);
+            //const SystemForm *ppp = static_cast<const SystemForm*>(pp);
 
             static_cast<const SystemForm*>(parent())->systemConfigDialog->UpdateSysConfigItems();
         }

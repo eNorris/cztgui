@@ -44,6 +44,9 @@
          <property name="text">
           <string>1KHz</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">GMPulserFreqBtnGroup</string>
+         </attribute>
         </widget>
        </item>
        <item row="15" column="1">
@@ -51,6 +54,9 @@
          <property name="text">
           <string>10KHz</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">GMPulserFreqBtnGroup</string>
+         </attribute>
         </widget>
        </item>
        <item row="8" column="1">
@@ -89,6 +95,9 @@
          <property name="text">
           <string>Unipolar</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">GMCathodeModeBtnGroup</string>
+         </attribute>
         </widget>
        </item>
        <item row="13" column="1">
@@ -96,6 +105,9 @@
          <property name="text">
           <string>Bipolar</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">GMCathodeModeBtnGroup</string>
+         </attribute>
         </widget>
        </item>
        <item row="16" column="0">
@@ -134,6 +146,9 @@
          <property name="text">
           <string>100Hz</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">GMPulserFreqBtnGroup</string>
+         </attribute>
         </widget>
        </item>
        <item row="8" column="0">
@@ -341,6 +356,9 @@
          <property name="text">
           <string>Sparsified</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">GMReadoutModeBtnGroup</string>
+         </attribute>
         </widget>
        </item>
        <item row="12" column="2">
@@ -348,6 +366,9 @@
          <property name="text">
           <string>Multi Threshold</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">GMCathodeModeBtnGroup</string>
+         </attribute>
         </widget>
        </item>
        <item row="15" column="2">
@@ -355,6 +376,9 @@
          <property name="text">
           <string>100KHz</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">GMPulserFreqBtnGroup</string>
+         </attribute>
         </widget>
        </item>
        <item row="16" column="2">
@@ -445,6 +469,9 @@
          <property name="text">
           <string>ReadAll</string>
          </property>
+         <attribute name="buttonGroup">
+          <string notr="true">GMReadoutModeBtnGroup</string>
+         </attribute>
         </widget>
        </item>
        <item row="20" column="1">
@@ -462,4 +489,9 @@
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="GMReadoutModeBtnGroup"/>
+  <buttongroup name="GMCathodeModeBtnGroup"/>
+  <buttongroup name="GMPulserFreqBtnGroup"/>
+ </buttongroups>
 </ui>

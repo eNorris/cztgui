@@ -1,7 +1,11 @@
 #ifndef CATHODEDIALOG_H
 #define CATHODEDIALOG_H
 
+#include "globals.h"
+#include "spectdmdll.h"
+
 #include <QDialog>
+#include <QMessageBox>
 
 namespace Ui {
     class CathodeDialog;
@@ -15,8 +19,12 @@ public:
     explicit CathodeDialog(QWidget *parent = 0);
     ~CathodeDialog();
 
-private:
+public:
     Ui::CathodeDialog *ui;
+
+public:
+    void UpdateASICCathodeItems();
+    void UpdateHGAffectedWidgets(bool a_HGSet);
 };
 
 #endif // CATHODEDIALOG_H

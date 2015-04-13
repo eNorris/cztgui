@@ -3,17 +3,23 @@
 
 #include "qcustomplot.h"
 
-
 class ClickablePlot : public QCustomPlot
 {
 
     Q_OBJECT
 
+protected:
+    QCPColorScale *colorScale;
+    QCPMarginGroup *marginGroup;
+
 public:
     ClickablePlot(QWidget *parent = 0);
     virtual ~ClickablePlot();
 
-    void setColorMap(QCPColorMap *map){colorMap = map;}
+    void setColorMap(QCPColorMap *map);
+    void setDims(const int nx, const int ny);
+    void setValue(const int x, const int y, const float v);
+    void rescale();
 
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
