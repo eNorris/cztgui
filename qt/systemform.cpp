@@ -24,6 +24,44 @@ SystemForm::SystemForm(QWidget *parent) :
     cathodeDialog = new CathodeDialog(this);
     systemConfigDialog = new SystemConfigDialog(this);
 
+    // From mainwindow.cpp
+    for(int i = 0; i < 128; i++)
+    {
+        anodeDialog->ui->anodeChannelNoCombo->addItem(QString("%1").arg(i + 1));
+        anodeDialog->ui->anodeChannelMonitorCombo->addItem(QString("%1").arg(i + 1));
+        //ui->anodeChannelNoCombo->addItem(QString("%1").arg(i + 1));
+        //ui->anodeChannelMonitorCombo->addItem(QString("%1").arg(i + 1));
+    }
+
+    for(int i = 0; i < 2; i++)
+    {
+        ui->cathodeChannelNoCombo->addItem(QString("%2").arg((i + 1)));
+    }
+
+    UpdateHGAffectedWidgets(false);
+
+    ui->individualAnodeRadio->setChecked(true);
+    ui->individualCathodeRadio->setChecked(true);
+
+    ui->disconnectButton->setEnabled(false);
+    ui->stopSysBtn->setEnabled(false);
+    ui->startCollectBtn->setEnabled(false);
+    ui->stopCollectBtn->setEnabled(false);
+
+    ui->DACScombo->setEnabled(false);
+    ui->cathEnergyTimingCombo->setEnabled(false);
+    ui->anodeChannelMonitorCombo->setEnabled(false);
+
+    connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
+
+    QScrollArea* l_ScrollArea = new QScrollArea(this);
+    l_ScrollArea->setWidget(ui->tabWidget);
+
+    setCentralWidget(l_ScrollArea);
+
+    // disable all non-connect tabs until we connect
+    EnableNonConnectTabs(false);
+
     //connect(ui->browseButton, SIGNAL(clicked()), this, SLOT(on_browseClicked()));
     //connect(ui->connectButton, SIGNAL(clicked()), this, SLOT(on_connectClicked()));
     //connect(ui->fpgaButton, SIGNAL(clicked()), this, SLOT(on_fpgaClicked()));

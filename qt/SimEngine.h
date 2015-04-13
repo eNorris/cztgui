@@ -7,6 +7,7 @@
 #include <QThread>
 #include <QDebug>
 #include <QTime>
+#include <QTimer>
 #include <QCoreApplication>
 #include <QString>
 #include <QFile>
@@ -37,9 +38,6 @@ signals:
     void update(double, double**);
 
 public slots:
-    void adddiffuse(int x, int y);
-    void subdiffuse(int x, int y);
-    void setPressure(double p);
     void stop();
     void run(int imgct, float exp, float lat);
 

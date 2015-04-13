@@ -23,7 +23,7 @@ public:
     void UpdateASICAnodeItems();
     void UpdateHGAffectedWidgets(bool a_HGSet);
 
-private:
+public:
     Ui::AnodeDialog *ui;
 
 protected slots:
