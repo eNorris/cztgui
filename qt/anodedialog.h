@@ -25,6 +25,10 @@ public:
 
 private:
     Ui::AnodeDialog *ui;
+
+protected slots:
+    void on_ASICAnode_UpdateASICButton_clicked();
+    void on_updateAnodeChannelButton_clicked();
 };
 
 #endif // ANODEDIALOG_H

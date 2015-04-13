@@ -279,3 +279,336 @@ void CathodeDialog::UpdateHGAffectedWidgets(bool a_HGSet)
         ui->cathodePeakingTimeCombo->addItem(l_ValStr);
     }
 }
+
+void CathodeDialog::on_cathode_UpdateASICButton_clicked()
+{
+    bool l_Success = true;
+
+    if(ui->ASICCathChnl1InternalLeakageBtnGroup->checkedButton())
+    {
+        CathodeChannel::InternalLeakageCurrentGenerator l_CathInternalLeak = CathodeChannel::InternalLeakageCurrentGenerator_Undefined;
+
+        if(ui->cathChnl1InternalLeak_350p_radio->isChecked())
+        {
+            l_CathInternalLeak = CathodeChannel::InternalLeakageCurrentGenerator_350pA;
+        }
+        else if(ui->cathChnl1InternalLeak_2nA_radio->isChecked())
+        {
+            l_CathInternalLeak = CathodeChannel::InternalLeakageCurrentGenerator_2nA;
+        }
+
+        if(!SpectDMDll::SetCathodeChannelInternalLeakageCurrentGenerator(1, l_CathInternalLeak))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(ui->ASICCathChnl2InternalLeakageBtnGroup->checkedButton())
+        {
+            CathodeChannel::InternalLeakageCurrentGenerator l_CathInternalLeak = CathodeChannel::InternalLeakageCurrentGenerator_Undefined;
+
+            if(ui->cathChnl2InternalLeak_350p_radio->isChecked())
+            {
+                l_CathInternalLeak = CathodeChannel::InternalLeakageCurrentGenerator_350pA;
+            }
+            else if(ui->cathChnl2InternalLeak_2nA_radio->isChecked())
+            {
+                l_CathInternalLeak = CathodeChannel::InternalLeakageCurrentGenerator_2nA;
+            }
+
+            if(!SpectDMDll::SetCathodeChannelInternalLeakageCurrentGenerator(2, l_CathInternalLeak))
+            {
+                l_Success = false;
+            }
+        }
+    }
+
+    if(l_Success)
+    {
+        if(ui->ASICCathTestModeBtnGroup->checkedButton())
+        {
+            TestModeInput l_TestMode = TestModeInput_Undefined;
+
+            if(ui->cathTestMode_stepradio->isChecked())
+            {
+                l_TestMode = TestModeInput_Step;
+            }
+            else if(ui->cathTestMode_rampradio->isChecked())
+            {
+                l_TestMode = TestModeInput_Ramp;
+            }
+
+            if(!SpectDMDll::SetCathodeTestModeInput(l_TestMode))
+            {
+                l_Success = false;
+            }
+        }
+    }
+
+    if(l_Success)
+    {
+        if(ui->ASICCathShaperPeakingBtnGroup->checkedButton())
+        {
+            TimingChannelsShaperPeakingTime l_ShaperPeakingTime = TimingChannelsShaperPeakingTime_Undefined;
+
+            if(ui->shaperPeakingTime_100_radio->isChecked())
+            {
+                l_ShaperPeakingTime = TimingChannelsShaperPeakingTime_100nS;
+            }
+            else if(ui->shaperPeakingTime_200_radio->isChecked())
+            {
+                l_ShaperPeakingTime = TimingChannelsShaperPeakingTime_200nS;
+            }
+            else if(ui->shaperPeakingTime_400_radio->isChecked())
+            {
+                l_ShaperPeakingTime = TimingChannelsShaperPeakingTime_400nS;
+            }
+            else if(ui->shaperPeakingTime_800_radio->isChecked())
+            {
+                l_ShaperPeakingTime = TimingChannelsShaperPeakingTime_800nS;
+            }
+
+            if(!SpectDMDll::SetCathodeTimingChannelsShaperPeakingTime(l_ShaperPeakingTime))
+            {
+                l_Success = false;
+            }
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetCathodeTimingChannelsSecondaryMultiThresholdsDisplacementStep(ui->secondaryMultiThreshDispSpinner->value()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(ui->ASICCathodeTestClockTypeBtnGroup->checkedButton())
+        {
+            CathodeTestClockType l_TestClockType = CathodeTestClockType_Undefined;
+
+            if(ui->cathTestClock_SDI->isChecked())
+            {
+                l_TestClockType = CathodeTestClockType_ArrivesOnSDI_NSDI;
+            }
+            else if(ui->cathTestClock_AnodeCopy->isChecked())
+            {
+                l_TestClockType = CathodeTestClockType_CopyAnodeTestClock;
+            }
+
+            if(!SpectDMDll::SetCathodeTestClockType(l_TestClockType))
+            {
+                l_Success = false;
+            }
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetPeakDetectTimeout(ChannelType_Cathode, ui->cathodePeakDetectTimeoutCombo->currentText().toInt()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetTimeDetectRampLength(ChannelType_Cathode, ui->cathodeTimeDetectRampLengthCombo->currentText().toInt()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetPeakingTime(ChannelType_Cathode, ui->cathodePeakingTimeCombo->currentText().toDouble()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetTestPulseStep(ChannelType_Cathode, ui->cathodeTestPulseSpinner->value()))
+        {
+            l_Success = false;
+        }
+    }
+
+    // thresholds
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetChannelThresholdStep(ChannelThresholdType_CathodeEnergy, ui->cathodeEnergyThreshSpinner->value()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetChannelThresholdStep(ChannelThresholdType_CathodeTimingPrimaryMultiThresholdBiPolar
+                                          , ui->cathodeTimingPrimaryThreshSpinner->value()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetChannelThresholdStep(ChannelThresholdType_CathodeTimingUnipolar
+                                          , ui->cathodeTimingUnipolarThreshSpinner->value()))
+        {
+            l_Success = false;
+        }
+    }
+
+    // If camera update mode is auto then functions above would have sent data down to device
+    if(l_Success && SpectDMDll::GetCameraUpdateMode() == CameraUpdateMode_Manual)
+    {
+        l_Success = SpectDMDll::SendASICGlobalData();
+    }
+
+    if(!l_Success)
+    {
+        QMessageBox::warning(this, "SpectDM", SpectDMDll::GetLastError().c_str());
+    }
+}
+
+void CathodeDialog::on_updateCathodeChannelButton_clicked()
+{
+    bool l_Success = true;
+
+    SpectDMDll::SetActiveChannelType(ChannelType_Cathode);
+
+    if(ui->allCathodesRadio->isChecked())
+    {
+        SpectDMDll::SetChannelUpdateType(ChannelUpdateType_Broadcast);
+    }
+    else
+    {
+        // individual channel selected.
+        SpectDMDll::SetChannelUpdateType(ChannelUpdateType_SingleChannel);
+        SpectDMDll::SetActiveChannel(ui->cathodeChannelNoCombo->currentText().toInt());
+    }
+
+    if(!SpectDMDll::MaskChannel(ui->cathodeChannelMaskCheck->isChecked()))
+    {
+        l_Success = false;
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::EnableChannelTestCapacitor(ui->cathodeEnableTestCapacitorCheck->isChecked()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(ui->ASICCathChannelShapedSignalBtnGroup->checkedButton())
+        {
+            CathodeChannel::ShapedTimingSignal l_ShapedSignal = CathodeChannel::ShapedTimingSignal_Undefined;
+
+            if(ui->cathodeShapedTimingSignalUnipolar_radio->isChecked())
+            {
+                l_ShapedSignal = CathodeChannel::ShapedTimingSignal_Unipolar;
+            }
+            else if(ui->shapedTimingSignalBipolar_radio->isChecked())
+            {
+                l_ShapedSignal = CathodeChannel::ShapedTimingSignal_Bipolar;
+            }
+
+            if(!SpectDMDll::SetCathodeChannelShapedTimingSignal(l_ShapedSignal))
+            {
+                l_Success = false;
+            }
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetChannelPositivePulseThresholdTrimStep(ui->cathodeChnlPosTrimSpinner->value()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetCathodeTimingChannelTrimStep(CathodeTimingChannelType_Unipolar
+                                                      , ui->cathodeChnlUnipolarTrimSpinner->value()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetCathodeTimingChannelTrimStep(CathodeTimingChannelType_FirstMultiThresholdBiPolar
+                                                      , ui->cathodeChnlFirstMultiTrimSpinner->value()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetCathodeTimingChannelTrimStep(CathodeTimingChannelType_SecondMultiThreshold
+                                                      , ui->cathodeChnlSecondMultiTrimSpinner->value()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(!SpectDMDll::SetCathodeTimingChannelTrimStep(CathodeTimingChannelType_ThirdMultiThreshold
+                                                  , ui->cathodeChnlThirdMultiTrimSpinner->value()))
+        {
+            l_Success = false;
+        }
+    }
+
+    if(l_Success)
+    {
+        if(ui->ASICCathodeTimingModeBtnGroup->checkedButton())
+        {
+            CathodeChannel::TimingMode l_CathTimingMode = CathodeChannel::TimingMode_Undefined;
+
+            if(ui->cathodeTimingModeUnipolar_radio->isChecked())
+            {
+                l_CathTimingMode = CathodeChannel::TimingMode_Unipolar;
+            }
+            else if(ui->cathodeTimingModeMultiUnipolar_radio->isChecked())
+            {
+                l_CathTimingMode = CathodeChannel::TimingMode_MultiThreshold_Unipolar;
+            }
+            else if(ui->cathodeChnlTimingModeBiPolarUniPolar_radio->isChecked())
+            {
+                l_CathTimingMode = CathodeChannel::TimingMode_BiPolar_Unipolar;
+            }
+
+            if(!SpectDMDll::SetCathodeChannelTimingMode(l_CathTimingMode))
+            {
+                l_Success = false;
+            }
+        }
+    }
+
+    // If camera update mode is auto then functions above would have sent data down to device
+    if(l_Success && SpectDMDll::GetCameraUpdateMode() == CameraUpdateMode_Manual)
+    {
+        l_Success = SpectDMDll::SendASICChannelData();
+    }
+
+    if(!l_Success)
+    {
+        QMessageBox::warning(this, "SpectDM", SpectDMDll::GetLastError().c_str());
+    }
+}

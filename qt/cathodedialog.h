@@ -25,6 +25,10 @@ public:
 public:
     void UpdateASICCathodeItems();
     void UpdateHGAffectedWidgets(bool a_HGSet);
+
+public slots:
+    void on_cathode_UpdateASICButton_clicked();
+    void on_updateCathodeChannelButton_clicked();
 };
 
 #endif // CATHODEDIALOG_H
