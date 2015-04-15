@@ -348,11 +348,4 @@ void SystemForm::fpsUnbound()
     fpsBound = false;
 }
 
-void SystemForm::delay(int millisecs)
-{
-    QTime dieTime = QTime::currentTime().addMSecs(millisecs);
-    while(QTime::currentTime() < dieTime);
-        //QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
-}
-
 

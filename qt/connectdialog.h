@@ -2,6 +2,8 @@
 #define CONNECTDIALOG_H
 
 #include "globals.h"
+#include "util.h"
+
 #include <QDialog>
 
 #include "spectdmdll.h"

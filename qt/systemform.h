@@ -1,6 +1,8 @@
 #ifndef SYSTEMFORM_H
 #define SYSTEMFORM_H
 
+#include "util.h"
+
 #include <QWidget>
 #include <QFileDialog>
 #include <QDebug>
@@ -40,9 +42,6 @@ public:
     AnodeDialog *anodeDialog;
     CathodeDialog *cathodeDialog;
     SystemConfigDialog *systemConfigDialog;
-
-protected:
-    void delay(int millisecs);
 
 private:
     Ui::SystemForm *ui;

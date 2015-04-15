@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     systemconfigdialog.cpp \
     ClickablePlot.cpp \
     qcustomplot.cpp \
-    SimEngine.cpp
+    SimEngine.cpp \
+    util.cpp
 
 HEADERS  += mainwindow.h \
     patientinfoform.h \
@@ -52,7 +53,8 @@ HEADERS  += mainwindow.h \
     systemconfigdialog.h \
     qcustomplot.h \
     SimEngine.h \
-    clickableplot.h
+    clickableplot.h \
+    util.h
 
 FORMS    += mainwindow.ui \
     patientinfoform.ui \

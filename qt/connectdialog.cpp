@@ -119,7 +119,9 @@ void ConnectDialog::on_connectButton_clicked()
             //const QWidget *pp = static_cast<const QWidget*>(p);
             //const SystemForm *ppp = static_cast<const SystemForm*>(pp);
 
+            delay(100);
             static_cast<const SystemForm*>(parent())->systemConfigDialog->UpdateSysConfigItems();
+            delay(500);
             SpectDMDll::StartSys();
             emit connected();
         }
