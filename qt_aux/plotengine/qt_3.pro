@@ -17,13 +17,15 @@ SOURCES += main.cpp \
     qcustomplot.cpp \
     SimEngine.cpp \
     ClickablePlot.cpp \
-    VerticalAutoslider.cpp
+    VerticalAutoslider.cpp \
+    cudaengine.cpp
 
 HEADERS  += MainWindow.h \
     qcustomplot.h \
     utils.h \
     SimEngine.h \
     ClickablePlot.h \
-    VerticalAutoslider.h
+    VerticalAutoslider.h \
+    cudaengine.h
 
 FORMS    += ui_MainWindow.ui

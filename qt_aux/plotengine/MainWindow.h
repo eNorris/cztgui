@@ -6,7 +6,8 @@
 #include <QThread>
 
 #include "utils.h"
-#include "SimEngine.h"
+//#include "SimEngine.h"
+#include "cudaengine.h"
 
 class QCPColorMap;
 class QCPColorScale;
@@ -21,7 +22,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    static const int NX = 200, NY = 200;
+    static const int NX = 300, NY = 1000;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -39,17 +40,14 @@ private:
     QCPColorScale *colorScale;
     QCPMarginGroup *marginGroup;
 
-    SimEngine *engine;
+    //SimEngine *engine;
+    CudaEngine *engine;
 
     const static float FPS_LIMIT = 30.0;
     bool fpsBound;
 
-    //const float SCALE_FACTOR = 1.10;
 
 private slots:
-    void realtimeDataSlot();
-    //void rt2DDataSlot(int nx, int ny, QCPColorMap *colorMap);
-    void rt2DDataSlot();
     void updatesurf(double t, double **data);
     void fpsUnbound();
 };

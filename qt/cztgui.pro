@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     ClickablePlot.cpp \
     qcustomplot.cpp \
     SimEngine.cpp \
-    util.cpp
+    util.cpp \
+    protocoldialog.cpp
 
 HEADERS  += mainwindow.h \
     patientinfoform.h \
@@ -54,7 +55,8 @@ HEADERS  += mainwindow.h \
     qcustomplot.h \
     SimEngine.h \
     clickableplot.h \
-    util.h
+    util.h \
+    protocoldialog.h
 
 FORMS    += mainwindow.ui \
     patientinfoform.ui \
@@ -68,7 +70,8 @@ FORMS    += mainwindow.ui \
     globalconfigdialog.ui \
     anodedialog.ui \
     cathodedialog.ui \
-    systemconfigdialog.ui
+    systemconfigdialog.ui \
+    protocoldialog.ui
 
 # Add the library file for 64-bit Linux, links to BOTH libSpectDMSharedLib.so and libSpectDMSharedLib.so.42
 # The two files are identical, but because of naming conventions, they have to both be there.

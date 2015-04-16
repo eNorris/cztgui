@@ -1,8 +1,18 @@
+#include "cudaengine.h"
 
-#include "SimEngine.h"
+CudaEngine::CudaEngine() : QObject(), built(false), running(false), nx(0), ny(0), t(0), pressure(1.0),
+    data(NULL), prevdata(NULL), maxSimRate(1.0), simRateBounded(false)
+{
+    simTimer = new QTimer(this);
+    connect(simTimer, SIGNAL(timeout()), this, SLOT(unboundSimRate()));
+}
 
+CudaEngine::CudaEngine(const int nx, const int ny) : CudaEngine()
+{
+    build(nx, ny);
+}
 
-SimEngine::~SimEngine()
+CudaEngine::~CudaEngine()
 {
     if(built)
     {
@@ -12,7 +22,7 @@ SimEngine::~SimEngine()
     }
 }
 
-void SimEngine::build()
+void CudaEngine::build()
 {
     if(built)
         return;
@@ -34,25 +44,38 @@ void SimEngine::build()
     built = true;
 }
 
-void SimEngine::build(const int nx, const int ny)
+void CudaEngine::build(const int nx, const int ny)
 {
     this->nx = nx;
     this->ny = ny;
     build();
 }
 
-void SimEngine::run()
+void CudaEngine::setSimRate(const double simRate)
+{
+    maxSimRate = simRate;
+    //simTimer->setInterval(1.0/maxSimRate);
+}
+
+void CudaEngine::run()
 {
     if(!built)
         return;
 
     running = true;
+    simTimer->start(1000.0 / maxSimRate);
     double diffrate = .25;
 
     while(running)
     {
+        while(simRateBounded)
+        {
+            QApplication::processEvents(QEventLoop::AllEvents, 100);
+        }
+        simRateBounded = true;
+
         t += 1.0;
-        QThread::msleep(30);
+        //QThread::msleep(30);
 
         double d = 0;
         for(int i = 0; i < nx; i++)
@@ -67,7 +90,6 @@ void SimEngine::run()
                     d += diffrate * (prevdata[i][j-1] - prevdata[i][j]);
                 if(j != ny-1)
                     d += diffrate * (prevdata[i][j+1] - prevdata[i][j]);
-                //if(!(i % 10 == 0))
                 data[i][j] = prevdata[i][j] + d;
                 if(j == 0)
                     data[i][j] = 1.0;
@@ -78,11 +100,14 @@ void SimEngine::run()
         double **tmp = data;
         data = prevdata;
         prevdata = tmp;
+
+        QApplication::processEvents(QEventLoop::AllEvents, 100);
     }
+    simTimer->stop();
     return;
 }
 
-void SimEngine::adddiffuse(int x, int y)
+void CudaEngine::adddiffuse(int x, int y)
 {
     if(x >= 0 && x < nx && y >= 0 && y < ny)
         prevdata[x][y] += pressure;
@@ -96,7 +121,7 @@ void SimEngine::adddiffuse(int x, int y)
         prevdata[x][y+1] += pressure/2.0;
 }
 
-void SimEngine::subdiffuse(int x, int y)
+void CudaEngine::subdiffuse(int x, int y)
 {
     if(x >= 0 && x < nx && y >= 0 && y < ny)
         prevdata[x][y] -= pressure;
@@ -110,17 +135,17 @@ void SimEngine::subdiffuse(int x, int y)
         prevdata[x][y+1] -= pressure/2.0;
 }
 
-void SimEngine::setPressure(double p)
+void CudaEngine::setPressure(double p)
 {
     pressure = p;
 }
 
-void SimEngine::stop()
+void CudaEngine::stop()
 {
     running = false;
 }
 
-double& SimEngine::operator()(const int xIndex, const int yIndex)
+void CudaEngine::unboundSimRate()
 {
-    return data[xIndex][yIndex];
+    simRateBounded = false;
 }
