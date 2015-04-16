@@ -56,7 +56,8 @@ void ClickablePlot::setDims(const int nx, const int ny)
 
 void ClickablePlot::rescale()
 {
-    colorMap->rescaleDataRange();
+    colorMap->rescaleDataRange(true);
+    //colorScale->rescaleDataRange(nx);
 }
 
 void ClickablePlot::mousePressEvent(QMouseEvent *event)

@@ -185,15 +185,27 @@ SystemForm::~SystemForm()
 
 void SystemForm::loadDefaults()
 {
+    qDebug() << "Loading Defaults";
+
+
     delay(500);
+    qDebug() << "sysconfig";
     systemConfigDialog->loadDefaults();
-    delay(500);
+    delay(5000);
+
+    qDebug() << "config";
     configDialog->loadDefaults();
     delay(500);
+
+    qDebug() << "fpga";
     fpgaDialog->loadDefaults();
     delay(500);
+
+    qDebug() << "anode";
     anodeDialog->loadDefaults();
     delay(500);
+
+    qDebug() << "cathode";
     cathodeDialog->loadDefaults();
 }
 

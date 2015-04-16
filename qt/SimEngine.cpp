@@ -68,8 +68,8 @@ void SimEngine::run(int imgct, float exp, float lat)
         savePhotons(filename.toStdString().c_str());
         qDebug() << "loading";
         delay(500);
-        //loadPhotons(filename, data);
-        loadPhotons("/usr/local/home/etnc6d/research/cztgui/data/test_100114.csv", data);
+        loadPhotons(filename, data);
+        //loadPhotons("/usr/local/home/etnc6d/research/cztgui/data/test_100114.csv", data);
         qDebug() << "Time to save & load: " << timer.elapsed();
 
         QString str = "";
