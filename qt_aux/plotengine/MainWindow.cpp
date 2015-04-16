@@ -8,11 +8,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     fpsBound = false;
 
-    QCustomPlot *customPlot = ui->customPlot;
-    colorScale = new QCPColorScale(ui->customPlot);
-    marginGroup = new QCPMarginGroup(ui->customPlot);
+    ClickablePlot *customPlot = ui->customPlot;
+    customPlot->setDims(NX, NY);
+    //colorScale = new QCPColorScale(ui->customPlot);
+    //marginGroup = new QCPMarginGroup(ui->customPlot);
 
-    engine = new SimEngine(200, 200);
+    engine = new SimEngine(NX, NY);
 
     /*
     //demoName = "Quadratic Demo";
@@ -149,6 +150,7 @@ MainWindow::MainWindow(QWidget *parent) :
   dataTimer.start(10); // Interval 0 means to refresh as fast as possible
   */
 
+    /*
     // configure axis rect:
     //customPlot->setInteractions(QCP::iRangeDrag|QCP::iRangeZoom); // this will also allow rescaling the color scale by dragging/zooming
     customPlot->axisRect()->setupFullAxesBox(true);
@@ -189,6 +191,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect(&dataTimer, SIGNAL(timeout()), this, SLOT(rt2DDataSlot()));
     //dataTimer.start(30); // Interval 0 means to refresh as fast as possible
     //connect()
+    */
 
 
     connect(ui->customPlot, SIGNAL(addmousemoved(int, int)), engine, SLOT(adddiffuse(int,int)), Qt::DirectConnection);
@@ -294,9 +297,9 @@ void MainWindow::rt2DDataSlot()
     if (key-lastPointKey > 0.01) // at most add point every 10 ms
     {
         double x, y, z;
-        for (int xIndex=0; xIndex<nx; ++xIndex)
+        for (int xIndex=0; xIndex<NX; ++xIndex)
         {
-          for (int yIndex=0; yIndex<ny; ++yIndex)
+          for (int yIndex=0; yIndex<NY; ++yIndex)
           {
             colorMap->data()->cellToCoord(xIndex, yIndex, &x, &y);
             double xx = qSin(x + 5 * t);
@@ -353,11 +356,12 @@ void MainWindow::updatesurf(double t, double **data)
     {
         //double x, y, z;
 
-        for (int xIndex=0; xIndex<nx; ++xIndex)
+        for (int xIndex=0; xIndex<NX; ++xIndex)
         {
-          for (int yIndex=0; yIndex<ny; ++yIndex)
+          for (int yIndex=0; yIndex<NY; ++yIndex)
           {
-              colorMap->data()->setCell(xIndex, yIndex, data[xIndex][yIndex]);
+              //colorMap->data()->setCell(xIndex, yIndex, data[xIndex][yIndex]);
+              ui->customPlot->setData(xIndex, yIndex, data[xIndex][yIndex]);
               total += data[xIndex][yIndex];
             //colorMap->data()->cellToCoord(xIndex, yIndex, &x, &y);
             //double xx = qSin(x + 5 * t);
@@ -366,7 +370,7 @@ void MainWindow::updatesurf(double t, double **data)
             //colorMap->data()->setCell(xIndex, yIndex, z);
           }
         }
-        total /= (nx * ny);
+        total /= (NX * NY);
         ui->progressBar->setValue(int(1000 * total));
 
         // set the color gradient of the color map to one of the presets:

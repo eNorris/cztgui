@@ -21,6 +21,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    static const int NX = 200, NY = 200;
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
@@ -32,7 +34,7 @@ private:
     Ui::MainWindow *ui;
     QTimer dataTimer;
 
-    int nx, ny;
+    //int nx, ny;
     QCPColorMap *colorMap;
     QCPColorScale *colorScale;
     QCPMarginGroup *marginGroup;

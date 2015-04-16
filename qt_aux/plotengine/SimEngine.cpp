@@ -58,6 +58,8 @@ void SimEngine::run()
         for(int i = 0; i < nx; i++)
             for(int j = 0; j < ny; j++)
             {
+                //if(data[i][j] > 0)
+                //    qDebug() << "Good data";
                 d = 0;
                 if(i != 0)
                     d += diffrate * (prevdata[i-1][j] - prevdata[i][j]);
@@ -69,7 +71,7 @@ void SimEngine::run()
                     d += diffrate * (prevdata[i][j+1] - prevdata[i][j]);
                 //if(!(i % 10 == 0))
                 data[i][j] = prevdata[i][j] + d;
-                if(j == 0)
+                if(j % 199 == 0)
                     data[i][j] = 1.0;
             }
 

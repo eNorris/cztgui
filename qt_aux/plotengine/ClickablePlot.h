@@ -20,10 +20,17 @@ public:
     virtual void mouseReleaseEvent(QMouseEvent *event);
     virtual void wheelEvent(QWheelEvent* event);
 
+    void setDims(const int x, const int y);
+    void setData(const int ix, const int iy, const double v);
+
 protected:
     bool activetrack;
     int clicktype;
+
+    int nx, ny;
     QCPColorMap *colorMap;
+    QCPColorScale *colorScale;
+    QCPMarginGroup *marginGroup;
 
 signals:
     void addmousemoved(int x, int y);
