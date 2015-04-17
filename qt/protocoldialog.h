@@ -17,6 +17,10 @@ public:
 
 private:
     Ui::ProtocolDialog *ui;
+
+public slots:
+    void setProtocolText(QString str);
+    void setProtocolTime(const double t);
 };
 
 #endif // PROTOCOLDIALOG_H
