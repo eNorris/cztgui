@@ -22,9 +22,7 @@ OtherInfoForm::~OtherInfoForm()
 void OtherInfoForm::on_startButton_clicked()
 {
     int ci = ui->protocolDropBox->currentIndex();
-    QVariant item = ui->protocolDropBox->itemData(ci);
-
-    QString tempstr = ui->protocolDropBox->itemText(ci); //item.toString();
+    QString tempstr = ui->protocolDropBox->itemText(ci);
     protocolDialog->setProtocolText(tempstr);
 
     int index = ui->protocolDropBox->currentIndex();
