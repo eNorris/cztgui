@@ -42,9 +42,10 @@ protected:
     int nx, ny;
     double t;
     double maxSimRate;
-    double pressure;
-    double **data;
-    double **prevdata;
+    //double pressure;
+    double **data_cpu;
+    double **data_gpu;
+    //double **prevdata;
     QTimer *simTimer;
 
 
