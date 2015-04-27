@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+class ProtocolDialog;
+
 namespace Ui {
 class OtherInfoForm;
 }
@@ -17,6 +19,14 @@ public:
 
 private:
     Ui::OtherInfoForm *ui;
+
+protected:
+    ProtocolDialog *protocolDialog;
+
+protected slots:
+    void on_startButton_clicked();
+
+
 };
 
 #endif // OTHERINFOFORM_H

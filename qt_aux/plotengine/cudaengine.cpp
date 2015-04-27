@@ -28,18 +28,22 @@ void CudaEngine::build()
         return;
     if(nx <= 0 || ny <= 0)
         return;
+
+    // Build the CPU matrix
     data = new double*[nx];
-    prevdata = new double*[nx];
+    //prevdata = new double*[nx];
     for(int i = 0; i < nx; i++)
     {
         data[i] = new double[ny];
-        prevdata[i] = new double[ny];
+        //prevdata[i] = new double[ny];
         for(int j = 0;j < ny; j++)
         {
             data[i][j] = double(rand())/RAND_MAX;
-            prevdata[i][j] = data[i][j];
+            //prevdata[i][j] = data[i][j];
         }
     }
+
+    // Copy the CPU data to the GPU
 
     built = true;
 }
@@ -68,31 +72,34 @@ void CudaEngine::run()
 
     while(running)
     {
+        // wait for the GPU to update
         while(simRateBounded)
         {
             QApplication::processEvents(QEventLoop::AllEvents, 100);
         }
         simRateBounded = true;
 
+	// copy the GPU solution
+
         t += 1.0;
 
-        double d = 0;
-        for(int i = 0; i < nx; i++)
-            for(int j = 0; j < ny; j++)
-            {
-                d = 0;
-                if(i != 0)
-                    d += diffrate * (prevdata[i-1][j] - prevdata[i][j]);
-                if(i != nx-1)
-                    d += diffrate * (prevdata[i+1][j] - prevdata[i][j]);
-                if(j != 0)
-                    d += diffrate * (prevdata[i][j-1] - prevdata[i][j]);
-                if(j != ny-1)
-                    d += diffrate * (prevdata[i][j+1] - prevdata[i][j]);
-                data[i][j] = prevdata[i][j] + d;
-                if(j == 0)
-                    data[i][j] = 1.0;
-            }
+        //double d = 0;
+        //for(int i = 0; i < nx; i++)
+        //    for(int j = 0; j < ny; j++)
+        //    {
+        //        d = 0;
+        //        if(i != 0)
+        //            d += diffrate * (prevdata[i-1][j] - prevdata[i][j]);
+        //        if(i != nx-1)
+        //            d += diffrate * (prevdata[i+1][j] - prevdata[i][j]);
+        //        if(j != 0)
+        //            d += diffrate * (prevdata[i][j-1] - prevdata[i][j]);
+        //        if(j != ny-1)
+        //            d += diffrate * (prevdata[i][j+1] - prevdata[i][j]);
+        //        data[i][j] = prevdata[i][j] + d;
+        //        if(j == 0)
+        //            data[i][j] = 1.0;
+        //    }
 
         emit update(t, data);
 

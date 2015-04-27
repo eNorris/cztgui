@@ -12,3 +12,13 @@ ProtocolDialog::~ProtocolDialog()
 {
     delete ui;
 }
+
+void ProtocolDialog::setProtocolText(QString str)
+{
+    ui->protocolLabel->setText(str);
+}
+
+void ProtocolDialog::setProtocolTime(const double t)
+{
+    ui->protocolTimeSpinBox->setValue(t);
+}
