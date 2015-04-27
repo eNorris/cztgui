@@ -75,7 +75,6 @@ void CudaEngine::run()
         simRateBounded = true;
 
         t += 1.0;
-        //QThread::msleep(30);
 
         double d = 0;
         for(int i = 0; i < nx; i++)

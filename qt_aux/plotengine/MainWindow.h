@@ -22,7 +22,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    static const int NX = 300, NY = 1000;
+    static const int NX = 300, NY = 300;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
