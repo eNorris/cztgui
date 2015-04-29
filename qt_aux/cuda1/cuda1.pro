@@ -19,8 +19,8 @@ SOURCES += main.cpp \
     ClickablePlot.cpp \
     VerticalAutoslider.cpp \
     cudaengine.cpp \
-    cudakernel.cpp \
-    cudalink.cpp
+    cudakernel.cu \
+    cudalink.cu
 
 HEADERS  += MainWindow.h \
     qcustomplot.h \
