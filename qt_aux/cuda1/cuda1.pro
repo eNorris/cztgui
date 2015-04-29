@@ -18,7 +18,9 @@ SOURCES += main.cpp \
     SimEngine.cpp \
     ClickablePlot.cpp \
     VerticalAutoslider.cpp \
-    cudaengine.cpp
+    cudaengine.cpp \
+    cudakernel.cpp \
+    cudalink.cpp
 
 HEADERS  += MainWindow.h \
     qcustomplot.h \
@@ -26,7 +28,9 @@ HEADERS  += MainWindow.h \
     SimEngine.h \
     ClickablePlot.h \
     VerticalAutoslider.h \
-    cudaengine.h
+    cudaengine.h \
+    cudakernel.h \
+    cudalink.h
 
 FORMS    += ui_MainWindow.ui
 
