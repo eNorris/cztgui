@@ -14,5 +14,7 @@ __global__ void testKernel3(float *val);
 __global__ void testKernel4(float *data1, float *data2);
 __global__ void testKernel4r(float *data1, float *data2);
 
+__global__ void testKernelInject(float *data);
+
 #endif // CUDAKERNEL
 

@@ -88,6 +88,14 @@ __global__ void testKernel4r(float *data1, float *data2)
     return;
 }
 
+__global__ void testKernelInject(float *data)
+{
+    data[1024*512+512] += 1000.0;
+    data[1024*512+513] += 1000.0;
+    data[1024*513+512] += 1000.0;
+    data[1024*513+513] += 1000.0;
+}
+
 
 
 

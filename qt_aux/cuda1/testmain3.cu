@@ -41,8 +41,14 @@ int main()
     int nx = 1024, ny = 1024;
 
     // Work with streams
+    int hp, lp;
+    cudaDeviceGetStreamPriorityRange(&lp, &hp);
+    cout << "HP = " << hp << "   LP = " << lp << endl;
     cudaStream_t stream;
-    cudaStreamCreate(&stream);
+    //cudaStreamCreate(&stream);
+    cudaStreamCreateWithPriority(&stream, cudaStreamNonBlocking, lp);
+    cudaStream_t hpStream;
+    cudaStreamCreateWithPriority(&hpStream, cudaStreamNonBlocking, hp);
 
     //cpu_data = new float*[nx];
     cpu_data = (float*) malloc(nx*ny*sizeof(float));
@@ -72,10 +78,17 @@ int main()
     for(int i = 0; i < simcycles; i++)
     {
         testKernel4<<<dimGrid, dimBlock, 0, stream>>>(gpu_data1, gpu_data2);
-        cudaDeviceSynchronize();
+        //cudaDeviceSynchronize();
         testKernel4r<<<dimGrid, dimBlock, 0, stream>>>(gpu_data1, gpu_data2);
-        cudaDeviceSynchronize();
+        //cudaDeviceSynchronize();
     }
+    
+    testKernelInject<<<1,1,0,hpStream>>>(gpu_data1);
+    cudaStreamSynchronize(hpStream);
+    cout << "HP Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC/1000) 
+         << " ms" << endl;
+
+    cudaDeviceSynchronize();
     cout << "Kernel Time: " << (std::clock() - start) / (double)(CLOCKS_PER_SEC/1000) 
          << " ms" << endl;
 
