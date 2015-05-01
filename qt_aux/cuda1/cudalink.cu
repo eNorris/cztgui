@@ -9,7 +9,7 @@ double **init_gpu(int nx, int ny, double **cpu_data)
     // Find a gpu
     int devID;
     cudaDeviceProp props;
-    devId = findCudaDevice(0, 0);
+    devID = findCudaDevice(0, 0);
 
     checkCudaErrors(cudaGetDevice(&devID));
     checkCudaErrors(cudaGetDeviceProperties(&props, devID));
@@ -19,19 +19,21 @@ double **init_gpu(int nx, int ny, double **cpu_data)
 
 
 
-
-    data_cpu = new double*[nx];
+    double **gpu_data;
+    gpu_data = new double*[nx];
     //data_cpu = new double*[nx];
     for(int i = 0; i < nx; i++)
     {
-        data[i] = new double[ny];
+        gpu_data[i] = new double[ny];
         //prevdata[i] = new double[ny];
         for(int j = 0;j < ny; j++)
         {
-            data[i][j] = double(rand())/RAND_MAX;
+            gpu_data[i][j] = double(rand())/RAND_MAX;
             //prevdata[i][j] = data[i][j];
         }
     }
+
+    return gpu_data;
 }
 
 int launch_testKernel(int &val)

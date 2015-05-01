@@ -4,6 +4,8 @@
 #include <iostream>
 
 #include <cuda_runtime.h>
+#include "cuda_common/inc/helper_functions.h"
+#include "cuda_common/inc/helper_cuda.h"
 
 #include "cudakernel.h"
 

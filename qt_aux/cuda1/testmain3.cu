@@ -41,14 +41,76 @@ int main()
     int nx = 1024, ny = 1024;
 
     // Work with streams
-    int hp, lp;
-    cudaDeviceGetStreamPriorityRange(&lp, &hp);
-    cout << "HP = " << hp << "   LP = " << lp << endl;
+    int *hp = new int, *lp = new int;
+    cudaDeviceGetStreamPriorityRange(lp, hp);
+    cout << "HP = " << *hp << "   LP = " << *lp << endl;
+
+    int *v = new int;
+    cudaDeviceGetAttribute(v, cudaDevAttrMaxThreadsPerBlock, 0);
+    cout << "cudaDevAttrMaxThreadsPerBlock = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrMaxSharedMemoryPerBlock, 0);
+    cout << "cudaDevAttrMaxSharedMemoryPerBlock = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrTotalConstantMemory, 0);
+    cout << "cudaDevAttrTotalConstantMemory = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrWarpSize, 0);
+    cout << "cudaDevAttrWarpSize = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrMaxPitch, 0);
+    cout << "cudaDevAttrMaxPitch = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrMaxRegistersPerBlock, 0);
+    cout << "cudaDevAttrMaxRegistersPerBlock = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrClockRate, 0);
+    cout << "cudaDevAttrClockRate = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrGpuOverlap, 0);
+    cout << "cudaDevAttrGpuOverlap = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrMultiProcessorCount, 0);
+    cout << "cudaDevAttrMultiProcessorCount = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrKernelExecTimeout, 0);
+    cout << "cudaDevAttrKernelExecTimeout = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrIntegrated, 0);
+    cout << "cudaDevAttrIntegrated = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrMaxRegistersPerBlock, 0);
+    cout << "cudaDevAttrMaxRegistersPerBlock = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrCanMapHostMemory, 0);
+    cout << "cudaDevAttrCanMapHostMemory = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrComputeMode, 0);
+    cout << "cudaDevAttrComputeMode = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrConcurrentKernels, 0);
+    cout << "cudaDevAttrConcurrentKernels = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrMemoryClockRate, 0);
+    cout << "cudaDevAttrMemoryClockRate = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrGlobalMemoryBusWidth, 0);
+    cout << "cudaDevAttrGlobalMemoryBusWidth = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrL2CacheSize, 0);
+    cout << "cudaDevAttrL2CacheSize = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrMaxThreadsPerMultiProcessor, 0);
+    cout << "cudaDevAttrMaxThreadsPerMultiProcessor = " << *v << endl;
+
+    cudaDeviceGetAttribute(v, cudaDevAttrStreamPrioritiesSupported, 0);
+    cout << "cudaDevAttrStreamPrioritiesSupported = " << *v << endl;
+
     cudaStream_t stream;
     //cudaStreamCreate(&stream);
-    cudaStreamCreateWithPriority(&stream, cudaStreamNonBlocking, lp);
+    cudaStreamCreateWithPriority(&stream, cudaStreamNonBlocking, *lp);
     cudaStream_t hpStream;
-    cudaStreamCreateWithPriority(&hpStream, cudaStreamNonBlocking, hp);
+    cudaStreamCreateWithPriority(&hpStream, cudaStreamNonBlocking, *hp);
 
     //cpu_data = new float*[nx];
     cpu_data = (float*) malloc(nx*ny*sizeof(float));

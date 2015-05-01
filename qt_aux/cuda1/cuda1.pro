@@ -22,6 +22,9 @@ SOURCES += main.cpp \
     cudakernel.cu \
     cudalink.cu
 
+SOURCES -= cudakernel.cu \
+           cudalink.cu
+
 HEADERS  += MainWindow.h \
     qcustomplot.h \
     utils.h \
@@ -31,6 +34,9 @@ HEADERS  += MainWindow.h \
     cudaengine.h \
     cudakernel.h \
     cudalink.h
+
+HEADERS -= cudalink.h \
+    cudakernel.h
 
 FORMS    += ui_MainWindow.ui
 
@@ -43,7 +49,8 @@ OBJECTS_DIR = $$DESTDIR/Obj
 QMAKE_CXXFLAGS_RELEASE =-O3  # C++ flags
 
 # Cuda sources
-CUDA_SOURCES += cuda_code.cu
+CUDA_SOURCES += cudakernel.cu \
+                cudalink.cu
 
 # Path to cuda toolkit install
 CUDA_DIR      = /usr/local/cuda-7.0
@@ -54,7 +61,7 @@ QMAKE_LIBDIR += $$CUDA_DIR/lib64     # Note I'm using a 64 bits Operating system
 # libs used in your code
 LIBS += -lcudart -lcuda
 # GPU architecture
-CUDA_ARCH     = sm_20                # Yeah! I've a new device. Adjust with your compute capability
+CUDA_ARCH     = sm_35                # Yeah! I've a new device. Adjust with your compute capability
 # Here are some NVCC flags I've always used by default.
 NVCCFLAGS     = --compiler-options -fno-strict-aliasing -use_fast_math --ptxas-options=-v
 
@@ -74,3 +81,4 @@ cuda.input = CUDA_SOURCES
 cuda.output = ${OBJECTS_DIR}${QMAKE_FILE_BASE}_cuda.o
 # Tell Qt that we want add more stuff to the Makefile
 QMAKE_EXTRA_COMPILERS += cuda
+
