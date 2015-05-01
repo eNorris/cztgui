@@ -30,3 +30,7 @@
 # Qt stuff
 *.user
 *.autosave
+
+# Other C++ compiler stuff
+*~
+*.ii
