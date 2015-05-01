@@ -60,7 +60,7 @@
            </widget>
           </item>
           <item>
-           <widget class="PatientInfoForm" name="widget" native="true"/>
+           <widget class="PatientInfoForm" name="patientInfoForm" native="true"/>
           </item>
           <item>
            <widget class="Line" name="line_2">
@@ -70,7 +70,7 @@
            </widget>
           </item>
           <item>
-           <widget class="StudyInfoForm" name="widget_2" native="true"/>
+           <widget class="StudyInfoForm" name="studyInfoForm" native="true"/>
           </item>
           <item>
            <widget class="Line" name="line_3">
@@ -80,12 +80,67 @@
            </widget>
           </item>
           <item>
-           <widget class="OtherInfoForm" name="widget_3" native="true"/>
+           <widget class="OtherInfoForm" name="otherInfoForm" native="true"/>
           </item>
           <item>
            <widget class="Line" name="line_4">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="move_this">
+            <item>
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="resetButton">
+              <property name="text">
+               <string>Reset</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="saveButton">
+              <property name="text">
+               <string>Save</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="acquireProtocolButton">
+            <property name="text">
+             <string>Acquire Protocol</string>
             </property>
            </widget>
           </item>
@@ -141,7 +196,7 @@
       </widget>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
-        <string>System Setup</string>
+        <string>Debug Panel</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>

@@ -2,6 +2,12 @@
 #define PATIENTINFOFORM_H
 
 #include <QWidget>
+#include <QDebug>
+#include <QModelIndex>
+#include <QStandardItemModel>
+#include <QDate>
+
+#include "patientdata.h"
 
 namespace Ui {
 class PatientInfoForm;
@@ -17,6 +23,9 @@ public:
 
 private:
     Ui::PatientInfoForm *ui;
+
+public slots:
+    void updateChildren(QModelIndex idx, QVector<PatientData*> &data);
 };
 
 #endif // PATIENTINFOFORM_H

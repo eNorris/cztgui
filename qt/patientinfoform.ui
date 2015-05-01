@@ -24,7 +24,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="weightLineEdit"/>
      </item>
      <item>
       <widget class="QLabel" name="label_3">
@@ -34,7 +34,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_2"/>
+      <widget class="QLineEdit" name="heightLineEdit"/>
      </item>
     </layout>
    </item>
@@ -69,16 +69,16 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_3"/>
+      <widget class="QLineEdit" name="firstNameLineEdit"/>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="lineEdit_4"/>
+      <widget class="QLineEdit" name="lastNameLineEdit"/>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEdit_5"/>
+      <widget class="QLineEdit" name="idLineEdit"/>
      </item>
      <item row="4" column="1">
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="genderComboBox">
        <item>
         <property name="text">
          <string>Male</string>
@@ -156,7 +156,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="dateEdit"/>
+      <widget class="QDateEdit" name="birthdateDateEdit"/>
      </item>
      <item>
       <widget class="QLabel" name="label_9">
@@ -166,7 +166,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="spinBox"/>
+      <widget class="QSpinBox" name="ageSpinBox"/>
      </item>
     </layout>
    </item>

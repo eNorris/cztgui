@@ -20,11 +20,15 @@ public:
 private:
     Ui::OtherInfoForm *ui;
 
+public:
+    int getProtocolType();
+    QString getProtocolName();
+
 protected:
-    ProtocolDialog *protocolDialog;
+    //ProtocolDialog *protocolDialog;
 
 protected slots:
-    void on_startButton_clicked();
+    //void on_startButton_clicked();
 
 
 };

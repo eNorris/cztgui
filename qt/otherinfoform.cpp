@@ -9,7 +9,7 @@ OtherInfoForm::OtherInfoForm(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    protocolDialog = new ProtocolDialog(this);
+    //protocolDialog = new ProtocolDialog(this);
 
 
 }
@@ -19,6 +19,17 @@ OtherInfoForm::~OtherInfoForm()
     delete ui;
 }
 
+int OtherInfoForm::getProtocolType()
+{
+    return ui->protocolDropBox->currentIndex();
+}
+
+QString OtherInfoForm::getProtocolName()
+{
+    return ui->protocolDropBox->itemText(getProtocolType());
+}
+
+/*
 void OtherInfoForm::on_startButton_clicked()
 {
     int ci = ui->protocolDropBox->currentIndex();
@@ -41,5 +52,6 @@ void OtherInfoForm::on_startButton_clicked()
 
     protocolDialog->exec();
 }
+*/
 
 

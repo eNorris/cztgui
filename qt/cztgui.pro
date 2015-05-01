@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     qcustomplot.cpp \
     SimEngine.cpp \
     util.cpp \
-    protocoldialog.cpp
+    protocoldialog.cpp \
+    patientdata.cpp
 
 HEADERS  += mainwindow.h \
     patientinfoform.h \
@@ -56,7 +57,8 @@ HEADERS  += mainwindow.h \
     SimEngine.h \
     clickableplot.h \
     util.h \
-    protocoldialog.h
+    protocoldialog.h \
+    patientdata.h
 
 FORMS    += mainwindow.ui \
     patientinfoform.ui \
