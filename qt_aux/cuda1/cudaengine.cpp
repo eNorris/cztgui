@@ -87,7 +87,7 @@ void CudaEngine::run()
         //while(simRateBounded)
         //{
         launch_diffusionKernel(nx, ny, data_gpu1, data_gpu2);
-        QThread::msleep(100);
+        //QThread::msleep(500);
         //updateCpuData(data_cpu, data_gpu1, nx, ny);
 
         //qDebug() << "t = " << t;
@@ -123,8 +123,8 @@ void CudaEngine::run()
             // Copy from GPU
             updateCpuData(data_cpu, data_gpu1, nx, ny);
 
-            for(int i = 0; i < nx*ny; i++)
-                qDebug() << data_cpu[i];
+            //for(int i = 0; i < nx*ny; i++)
+            //    qDebug() << data_cpu[i];
 
             // Emit data
             //qDebug() << "emit!";
@@ -146,6 +146,8 @@ void CudaEngine::run()
 
 void CudaEngine::adddiffuse(int x, int y)
 {
+    launch_addDiffuseKernel(data_gpu1, x, y, pressure);
+    /*
     if(x >= 0 && x < nx && y >= 0 && y < ny)
         data_cpu[nx*x+y] += pressure;
     if(x > 0 && x < nx && y >= 0 && y < ny)
@@ -156,10 +158,13 @@ void CudaEngine::adddiffuse(int x, int y)
         data_cpu[nx * x + y-1] += pressure/2.0;
     if(y <= ny-1 && y >= 0 && x >= 0 && x < nx)
         data_cpu[nx*x + y+1] += pressure/2.0;
+    */
 }
 
 void CudaEngine::subdiffuse(int x, int y)
 {
+    launch_subDiffuseKernel(data_gpu1, x, y, pressure);
+    /*
     if(x >= 0 && x < nx && y >= 0 && y < ny)
         data_cpu[nx*x + y] -= pressure;
     if(x > 0 && x < nx && y >= 0 && y < ny)
@@ -170,6 +175,7 @@ void CudaEngine::subdiffuse(int x, int y)
         data_cpu[nx*x + y-1] -= pressure/2.0;
     if(y <= ny-1 && y >= 0 && x >= 0 && x < nx)
         data_cpu[nx * x + y+1] -= pressure/2.0;
+    */
 }
 
 void CudaEngine::setPressure(double p)

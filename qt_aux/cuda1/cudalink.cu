@@ -83,3 +83,14 @@ int launch_diffusionKernel(int nx, int ny, float *gpu1, float *gpu2)
 
     return EXIT_SUCCESS;
 }
+
+int launch_addDiffuseKernel(float *data_gpu1, int x, int y, float pressure)
+{
+    addDiffuseKernel<<<1, 1>>>(data_gpu1, x, y, pressure);
+}
+
+int launch_subDiffuseKernel(float *data_gpu1, int x, int y, float pressure)
+{
+    subDiffuseKernel<<<1, 1>>>(data_gpu1, x, y, pressure);
+}
+

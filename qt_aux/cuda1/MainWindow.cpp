@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     dataTimer.start(1000.0 / FPS_LIMIT); // Interval 0 means to refresh as fast as possible
 
     QThread *thread = new QThread;
-    connect(engine, SIGNAL(update(double, double*)), this, SLOT(updatesurf(double, double*)));
+    connect(engine, SIGNAL(update(double, float*)), this, SLOT(updatesurf(double, float*)));
     connect(engine, SIGNAL(finished()), thread, SLOT(quit()));
     connect(engine, SIGNAL(finished()), engine, SLOT(deleteLater()));
     //connect(engine, SIGNAL(error(QString)), this, SLOT(errorString(QString)));

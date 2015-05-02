@@ -31,11 +31,11 @@ __global__ void testKernel4(float *data1, float *data2)
     float t = 0.0f;
     float c = 0.0f;
 
-    printf("d = %f\n", data1[NX*blockIdx.x + threadIdx.x]);
+    //printf("d = %f\n", data1[NX*blockIdx.x + threadIdx.x]);
     
     if(blockIdx.x > 0)
     {
-        t += (data1[NX*(blockIdx.x-1)+threadIdx.x] - data1[NX*blockIdx.x+threadIdx.x]);
+        t += (data1[NX*(blockIdx.x-1)+threadIdx.x] - data1[NX*blockIdx.x + threadIdx.x]);
         c += 1.0f;
     }
     if(blockIdx.x < NX-1)
@@ -55,7 +55,10 @@ __global__ void testKernel4(float *data1, float *data2)
     }
     //printf("block %i, %i, %i\n", blockIdx.x, threadIdx.x, 1024*blockIdx.x+threadIdx.x);
     //data2[1024*blockIdx.x+threadIdx.x] = 2*data1[1024*blockIdx.x+threadIdx.x];
-    data2[NX*blockIdx.x+threadIdx.x] = t/c*DIFF_RATE;
+    if(blockIdx.x == 0)
+        data2[NX*blockIdx.x+threadIdx.x] = 1.0;
+    else
+        data2[NX*blockIdx.x+threadIdx.x] = data1[NX*blockIdx.x+threadIdx.x] + t/c*DIFF_RATE;
     return;
 }
 
@@ -64,7 +67,7 @@ __global__ void testKernel4r(float *data1, float *data2)
     float t = 0.0f;
     float c = 0.0f;
 
-    printf("r = %f\n", data2[NX*blockIdx.x + threadIdx.x]);
+    //printf("r = %f\n", data2[NX*blockIdx.x + threadIdx.x]);
     
     if(blockIdx.x > 0)
     {
@@ -88,7 +91,10 @@ __global__ void testKernel4r(float *data1, float *data2)
     }
     //printf("block %i, %i, %i\n", blockIdx.x, threadIdx.x, 1024*blockIdx.x+threadIdx.x);
     //data2[1024*blockIdx.x+threadIdx.x] = 2*data1[1024*blockIdx.x+threadIdx.x];
-    data1[NX*blockIdx.x+threadIdx.x] = t/c*DIFF_RATE;
+    if(blockIdx.x == 0)
+        data1[NX*blockIdx.x+threadIdx.x] = 1.0;
+    else
+        data1[NX*blockIdx.x+threadIdx.x] = data2[NX*blockIdx.x+threadIdx.x] + t/c*DIFF_RATE;
     return;
 }
 
@@ -109,6 +115,15 @@ __global__ void testKernelInject(float *data)
     data[1024*513+513] += 1000.0;
 }
 
+__global__ void addDiffuseKernel(float *data, int x, int y, float pressure)
+{
+    data[NX * x + y] += pressure;
+}
+
+__global__ void subDiffuseKernel(float *data, int x, int y, float pressure)
+{
+    data[NX * x + y] -= pressure;
+}
 
 
 

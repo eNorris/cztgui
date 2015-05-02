@@ -42,7 +42,7 @@ protected:
     int nx, ny;
     double t;
     double maxSimRate;
-    double pressure;
+    float pressure;
     float *data_cpu;
     float *data_gpu1;
     float *data_gpu2;
