@@ -13,9 +13,12 @@
 using std::cout;
 using std::endl;
 
-float **init_gpu(int Nx, int Ny, double *cpu_data);
+float **init_gpu(int Nx, int Ny, float *cpu_data);
+void updateCpuData(float *data_cpu, float *data_gpu1, int nx, int ny);
 
-int launch_testKernel(int &val);
+int launch_testKernel();
+
+int launch_diffusionKernel(int nx, int ny, float *gpu1, float *gpu2);
 
 #endif // CUDALINK
 

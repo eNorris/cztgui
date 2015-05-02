@@ -23,7 +23,7 @@ public:
 
 signals:
     void finished();
-    void update(double, double*);
+    void update(double, float*);
 
 protected slots:
     void unboundSimRate();
@@ -43,7 +43,7 @@ protected:
     double t;
     double maxSimRate;
     double pressure;
-    double *data_cpu;
+    float *data_cpu;
     float *data_gpu1;
     float *data_gpu2;
     QTimer *simTimer;

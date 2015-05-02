@@ -38,9 +38,9 @@ void CudaEngine::build()
         return;
 
     // Allocate the cpu array
-    data_cpu = new double[nx*ny];
+    data_cpu = new float[nx*ny];
     for(int i = 0; i < nx*ny; i++)
-        data_cpu[i] = double(rand())/RAND_MAX;
+        data_cpu[i] = float(rand())/RAND_MAX;
     /*
     for(int i = 0; i < nx; i++)
     {
@@ -86,6 +86,12 @@ void CudaEngine::run()
     {
         //while(simRateBounded)
         //{
+        launch_diffusionKernel(nx, ny, data_gpu1, data_gpu2);
+        QThread::msleep(100);
+        //updateCpuData(data_cpu, data_gpu1, nx, ny);
+
+        //qDebug() << "t = " << t;
+
         QApplication::processEvents(QEventLoop::AllEvents, 100);
         //}
         //simRateBounded = true;
@@ -115,8 +121,13 @@ void CudaEngine::run()
         if(!simRateBounded)
         {
             // Copy from GPU
+            updateCpuData(data_cpu, data_gpu1, nx, ny);
+
+            for(int i = 0; i < nx*ny; i++)
+                qDebug() << data_cpu[i];
 
             // Emit data
+            //qDebug() << "emit!";
             emit update(t, data_cpu);
 
             //double **tmp = data;

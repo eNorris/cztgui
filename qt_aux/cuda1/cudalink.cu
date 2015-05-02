@@ -1,7 +1,7 @@
 
 #include "cudalink.h"
 
-float **init_gpu(int nx, int ny, double *cpu_data)
+float **init_gpu(int nx, int ny, float *cpu_data)
 {
     if(nx <= 0 || ny <= 0)
         return NULL;
@@ -49,13 +49,35 @@ float **init_gpu(int nx, int ny, double *cpu_data)
     return gpu_datas;
 }
 
-int launch_testKernel(int &val)
+void updateCpuData(float *data_cpu, float *data_gpu1, int nx, int ny)
+{
+    if(cudaMemcpyAsync(data_cpu, data_gpu1, nx*ny*sizeof(float), cudaMemcpyDeviceToHost) != cudaSuccess)
+        printf("updateCpuData: Cuda Error!");
+}
+
+int launch_testKernel()
 {
     // Define the grid and blocks
-    dim3 dimGrid(2, 2);
-    dim3 dimBlock(2, 2, 2);
+    dim3 dimGrid(4, 4);
+    dim3 dimBlock(20, 20, 2);
 
-    testKernel<<<dimGrid, dimBlock>>>(val);
+    testKernel5<<<dimGrid, dimBlock>>>();
+
+    cudaDeviceSynchronize();
+
+    return EXIT_SUCCESS;
+}
+
+int launch_diffusionKernel(int nx, int ny, float *gpu1, float *gpu2)
+{
+    if(nx > 1024 || ny > 2014)
+        printf("launch_diffusionKernel() GPU dimension exceeded!!!!");
+
+    dim3 dimGrid(nx);
+    dim3 dimBlock(ny);
+
+    testKernel4<<<dimGrid, dimBlock>>>(gpu1, gpu2);
+    testKernel4r<<<dimGrid, dimBlock>>>(gpu1, gpu2);
 
     cudaDeviceSynchronize();
 

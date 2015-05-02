@@ -42,12 +42,13 @@ MainWindow::~MainWindow()
 
 
 
-void MainWindow::updatesurf(double t, double *data)
+void MainWindow::updatesurf(double t, float *data)
 {
 
     //qDebug() << "updating surf t = " << t;
 
     static int simcount = 0;
+    static double lastt = 0.0;
     simcount++;
     if(fpsBound)
         return;
@@ -98,12 +99,14 @@ void MainWindow::updatesurf(double t, double *data)
     if (key-lastFpsKey > 2) // average fps over 2 seconds
     {
       ui->statusBar->showMessage(
-            QString("%1 FPS, %2 Sim Updates/sec, Average Intensity: %3")
+            QString("%1 FPS,   %2 Sim Updates/sec, %3 Sim Ticks/sec    Average Intensity: %4")
             .arg(frameCount/(key-lastFpsKey), 0, 'f', 2)
             .arg(simcount/(key-lastFpsKey), 0, 'f', 2)
+            .arg((t-lastt)/(key-lastFpsKey), 2, 'f', 4)
             .arg(total, 2, 'f', 4)
             , 0);
       lastFpsKey = key;
+      lastt = t;
       frameCount = 0;
       simcount = 0;
     }

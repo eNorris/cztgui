@@ -48,7 +48,7 @@ private:
 
 
 private slots:
-    void updatesurf(double t, double *data);
+    void updatesurf(double t, float *data);
     void fpsUnbound();
 };
 
