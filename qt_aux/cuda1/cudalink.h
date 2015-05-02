@@ -2,6 +2,7 @@
 #define CUDALINK
 
 #include <iostream>
+#include <ctime>
 
 #include <cuda_runtime.h>
 #include "cuda_common/inc/helper_functions.h"
@@ -12,7 +13,7 @@
 using std::cout;
 using std::endl;
 
-double **init_gpu(int Nx, int Ny, double **cpu_data);
+float **init_gpu(int Nx, int Ny, double *cpu_data);
 
 int launch_testKernel(int &val);
 

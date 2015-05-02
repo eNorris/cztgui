@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     dataTimer.start(1000.0 / FPS_LIMIT); // Interval 0 means to refresh as fast as possible
 
     QThread *thread = new QThread;
-    connect(engine, SIGNAL(update(double, double**)), this, SLOT(updatesurf(double, double**)));
+    connect(engine, SIGNAL(update(double, double*)), this, SLOT(updatesurf(double, double*)));
     connect(engine, SIGNAL(finished()), thread, SLOT(quit()));
     connect(engine, SIGNAL(finished()), engine, SLOT(deleteLater()));
     //connect(engine, SIGNAL(error(QString)), this, SLOT(errorString(QString)));
@@ -42,7 +42,7 @@ MainWindow::~MainWindow()
 
 
 
-void MainWindow::updatesurf(double t, double **data)
+void MainWindow::updatesurf(double t, double *data)
 {
 
     //qDebug() << "updating surf t = " << t;
@@ -69,8 +69,8 @@ void MainWindow::updatesurf(double t, double **data)
           for (int yIndex=0; yIndex<NY; ++yIndex)
           {
               //colorMap->data()->setCell(xIndex, yIndex, data[xIndex][yIndex]);
-              ui->customPlot->setData(xIndex, yIndex, data[xIndex][yIndex]);
-              total += data[xIndex][yIndex];
+              ui->customPlot->setData(xIndex, yIndex, data[NX*xIndex + yIndex]);
+              total += data[NX*xIndex + yIndex];
             //colorMap->data()->cellToCoord(xIndex, yIndex, &x, &y);
             //double xx = qSin(x + 5 * t);
             //int s = sgn(xx);

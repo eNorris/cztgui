@@ -1,7 +1,9 @@
 #include "cudaengine.h"
 
-CudaEngine::CudaEngine() : QObject(), built(false), running(false), nx(0), ny(0), t(0), pressure(1.0),
-    data_cpu(NULL), data_gpu(NULL), maxSimRate(1.0), simRateBounded(false)
+#include "cudalink.h"
+
+CudaEngine::CudaEngine() : QObject(), built(false), running(false), simRateBounded(false), nx(0), ny(0), t(0), maxSimRate(1.0), pressure(1.0),
+    data_cpu(NULL), data_gpu1(NULL), data_gpu2(NULL)
 {
     simTimer = new QTimer(this);
     connect(simTimer, SIGNAL(timeout()), this, SLOT(unboundSimRate()));
@@ -18,12 +20,13 @@ CudaEngine::~CudaEngine()
     {
         for(int i = 0; i < nx; i++)
         {
-            delete [] data_cpu[i];
-            delete [] data_gpu[i];
+            delete [] data_cpu;
         }
-        delete data_cpu;
-        delete data_gpu;
-        data_cpu = data_gpu = NULL;
+        //delete data_cpu;
+        data_cpu = NULL;
+
+        // TODO - dealloc cuda memory
+
     }
 }
 
@@ -33,20 +36,26 @@ void CudaEngine::build()
         return;
     if(nx <= 0 || ny <= 0)
         return;
-    data_cpu = new double*[nx];
-    //data_cpu = new double*[nx];
+
+    // Allocate the cpu array
+    data_cpu = new double[nx*ny];
+    for(int i = 0; i < nx*ny; i++)
+        data_cpu[i] = double(rand())/RAND_MAX;
+    /*
     for(int i = 0; i < nx; i++)
     {
         data_cpu[i] = new double[ny];
-        //prevdata[i] = new double[ny];
         for(int j = 0;j < ny; j++)
         {
             data_cpu[i][j] = double(rand())/RAND_MAX;
-            //prevdata[i][j] = data[i][j];
         }
     }
+    */
 
-    // TODO - Allocate GPU resources
+    // Allocate GPU resources
+    float **gpu_datas = init_gpu(nx, ny, data_cpu);
+    data_gpu1 = gpu_datas[0];
+    data_gpu2 = gpu_datas[1];
 
     built = true;
 }
@@ -71,7 +80,7 @@ void CudaEngine::run()
 
     running = true;
     simTimer->start(1000.0 / maxSimRate);
-    double diffrate = .25;
+    //double diffrate = .25;
 
     while(running)
     {
@@ -127,29 +136,29 @@ void CudaEngine::run()
 void CudaEngine::adddiffuse(int x, int y)
 {
     if(x >= 0 && x < nx && y >= 0 && y < ny)
-        data_cpu[x][y] += pressure;
+        data_cpu[nx*x+y] += pressure;
     if(x > 0 && x < nx && y >= 0 && y < ny)
-        data_cpu[x-1][y] += pressure/2.0;
+        data_cpu[nx*(x-1) + y] += pressure/2.0;
     if(x < nx-1 && x >= 0 && y >= 0 && y < ny)
-        data_cpu[x+1][y] += pressure/2.0;
+        data_cpu[nx*(x+1) + y] += pressure/2.0;
     if(y > 0 && y < ny && x >= 0 && x < nx)
-        data_cpu[x][y-1] += pressure/2.0;
+        data_cpu[nx * x + y-1] += pressure/2.0;
     if(y <= ny-1 && y >= 0 && x >= 0 && x < nx)
-        data_cpu[x][y+1] += pressure/2.0;
+        data_cpu[nx*x + y+1] += pressure/2.0;
 }
 
 void CudaEngine::subdiffuse(int x, int y)
 {
     if(x >= 0 && x < nx && y >= 0 && y < ny)
-        data_cpu[x][y] -= pressure;
+        data_cpu[nx*x + y] -= pressure;
     if(x > 0 && x < nx && y >= 0 && y < ny)
-        data_cpu[x-1][y] -= pressure/2.0;
+        data_cpu[nx*(x-1) + y] -= pressure/2.0;
     if(x < nx-1 && x >= 0 && y >= 0 && y < ny)
-        data_cpu[x+1][y] -= pressure/2.0;
+        data_cpu[nx*(x+1) + y] -= pressure/2.0;
     if(y > 0 && y < ny && x >= 0 && x < nx)
-        data_cpu[x][y-1] -= pressure/2.0;
+        data_cpu[nx*x + y-1] -= pressure/2.0;
     if(y <= ny-1 && y >= 0 && x >= 0 && x < nx)
-        data_cpu[x][y+1] -= pressure/2.0;
+        data_cpu[nx * x + y+1] -= pressure/2.0;
 }
 
 void CudaEngine::setPressure(double p)
