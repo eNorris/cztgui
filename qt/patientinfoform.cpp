@@ -54,11 +54,11 @@ void PatientInfoForm::updateAge(QDate date)
     //qDebug() << "My month = " << date.month() << "  today month = " << today.month();
     if(today.month() < date.month())
     {
-        qDebug() << "month < month";
+        //qDebug() << "month < month";
         age--;
     }
     else if(date.month() == today.month() && today.day() < date.day())
-    {   qDebug() << "today < today";
+    {   //qDebug() << "today < today";
         age--;
     }
 
