@@ -63,20 +63,13 @@ void MainWindow::updatesurf(double t, float *data)
     double total = 0.0;
     if (key-lastPointKey > 0.01) // at most add point every 10 ms
     {
-        //double x, y, z;
 
         for (int xIndex=0; xIndex<NX; ++xIndex)
         {
           for (int yIndex=0; yIndex<NY; ++yIndex)
           {
-              //colorMap->data()->setCell(xIndex, yIndex, data[xIndex][yIndex]);
               ui->customPlot->setData(xIndex, yIndex, data[NX*xIndex + yIndex]);
               total += data[NX*xIndex + yIndex];
-            //colorMap->data()->cellToCoord(xIndex, yIndex, &x, &y);
-            //double xx = qSin(x + 5 * t);
-            //int s = sgn(xx);
-            //z = qPow(qAbs(xx), t/10.0) * qPow(qAbs(qSin(y)), t/10.0);
-            //colorMap->data()->setCell(xIndex, yIndex, z);
           }
         }
         total /= (NX * NY);
