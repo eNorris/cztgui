@@ -26,6 +26,7 @@ private:
 
 public slots:
     void updateChildren(QModelIndex idx, QVector<PatientData*> &data);
+    void updateAge(QDate date);
 };
 
 #endif // PATIENTINFOFORM_H

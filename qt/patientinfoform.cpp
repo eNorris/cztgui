@@ -7,6 +7,9 @@ PatientInfoForm::PatientInfoForm(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->ageSpinBox->setReadOnly(true);
+
+    connect(ui->birthdateDateEdit, SIGNAL(dateChanged(QDate)), this, SLOT(updateAge(QDate)));
 
 }
 
@@ -38,4 +41,27 @@ void PatientInfoForm::updateChildren(QModelIndex idx, QVector<PatientData*> &dat
     //const QStandardItemModel *model = static_cast<const QStandardItemModel*>(idx.model());
     //QString s = model->data(idx).toString();
     //qDebug() << "s = " << s;
+
+    updateAge(ui->birthdateDateEdit->date());
+}
+
+void PatientInfoForm::updateAge(QDate date)
+{
+    //qDebug() << "Setting age";
+    QDate today = QDate::currentDate();
+    int age = today.year() - date.year();
+    //qDebug() << "age1 = " << age;
+    //qDebug() << "My month = " << date.month() << "  today month = " << today.month();
+    if(today.month() < date.month())
+    {
+        qDebug() << "month < month";
+        age--;
+    }
+    else if(date.month() == today.month() && today.day() < date.day())
+    {   qDebug() << "today < today";
+        age--;
+    }
+
+    //qDebug() << "today = " << today;
+    ui->ageSpinBox->setValue(age);
 }

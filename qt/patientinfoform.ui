@@ -156,7 +156,18 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="birthdateDateEdit"/>
+      <widget class="QDateEdit" name="birthdateDateEdit">
+       <property name="displayFormat">
+        <string>M/d/yyyy</string>
+       </property>
+       <property name="date">
+        <date>
+         <year>1999</year>
+         <month>8</month>
+         <day>3</day>
+        </date>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_9">
@@ -166,7 +177,17 @@
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="ageSpinBox"/>
+      <widget class="QSpinBox" name="ageSpinBox">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="minimum">
+        <number>-99</number>
+       </property>
+       <property name="maximum">
+        <number>199</number>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

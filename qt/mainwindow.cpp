@@ -66,27 +66,27 @@ MainWindow::~MainWindow()
 void MainWindow::buildPatientDataBase()
 {
     PatientData *manish = new PatientData();
-    manish->build("Manish", "", "Sharma", 1, "m", QDate(1990, 6, 30), 146.3, 201.2);
+    manish->build("Manish", "", "Sharma", 1, "m", QDate(2020, 1, 1), 146.3, 201.2);
     PatientData *ashish = new PatientData();
-    ashish->build("Ashish", "", "Avachat", 2, "m", QDate(1990, 6, 30), 146.3, 201.2);
+    ashish->build("Ashish", "", "Avachat", 2, "m", QDate(1991, 2, 28), 146.3, 201.2);
     PatientData *lukas = new PatientData();
-    lukas->build("Lukas", "", "Tucker", 3, "m", QDate(1990, 6, 30), 146.3, 201.2);
+    lukas->build("Lukas", "", "Tucker", 3, "m", QDate(1988, 3, 15), 146.3, 201.2);
     PatientData *jonathan = new PatientData();
-    jonathan->build("Jonathan", "", "Scott", 234, "m", QDate(1990, 6, 30), 146.3, 201.2);
+    jonathan->build("Jonathan", "", "Scott", 234, "m", QDate(1991, 5, 2), 146.3, 201.2);
     PatientData *edward = new PatientData();
     edward->build("Edward", "", "Norris", 501, "m", QDate(1990, 6, 30), 146.3, 201.2);
     PatientData *liu = new PatientData();
-    liu->build("Xin", "", "Liu", 661, "m", QDate(1990, 6, 30), 146.3, 201.2);
+    liu->build("Xin", "", "Liu", 661, "m", QDate(1977, 5, 4), 146.3, 201.2);
     PatientData *mueller = new PatientData();
-    mueller->build("Gary", "", "Mueller", 71, "m", QDate(1990, 6, 30), 146.3, 201.2);
+    mueller->build("Gary", "", "Mueller", 71, "m", QDate(1870, 8, 1), 146.3, 201.2);
     PatientData *castano = new PatientData();
-    castano->build("Carlos", "", "Castano", 8, "m", QDate(1990, 6, 30), 146.3, 201.2);
+    castano->build("Carlos", "", "Castano", 8, "m", QDate(1950, 9, 15), 146.3, 201.2);
     PatientData *alajo = new PatientData();
-    alajo->build("Ayodegi", "", "Alajo", 9, "m", QDate(1990, 6, 30), 146.3, 201.2);
+    alajo->build("Ayodegi", "", "Alajo", 9, "m", QDate(1941, 10, 31), 146.3, 201.2);
     PatientData *lee = new PatientData();
-    lee->build("Hank", "", "Lee", 91, "m", QDate(1990, 6, 30), 146.3, 201.2);
+    lee->build("Hank", "", "Lee", 91, "m", QDate(1999, 11, 30), 146.3, 201.2);
     PatientData *erika = new PatientData();
-    erika->build("Erika", "", "Tucker", 4, "f", QDate(1990, 6, 30), 146.3, 201.2);
+    erika->build("Erika", "", "Tucker", 4, "f", QDate(2013, 12, 31), 146.3, 201.2);
 
     patientVector.append(manish);
     patientVector.append(ashish);
