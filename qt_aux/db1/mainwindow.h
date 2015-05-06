@@ -3,6 +3,12 @@
 
 #include <QMainWindow>
 
+#include <QtSql/QSql>
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlDriver>
+#include <QtSql/QSqlQuery>
+#include <QDebug>
+
 namespace Ui {
 class MainWindow;
 }
@@ -14,6 +20,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    bool createConnection();
 
 private:
     Ui::MainWindow *ui;
