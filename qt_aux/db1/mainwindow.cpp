@@ -17,10 +17,11 @@ MainWindow::~MainWindow()
 
 bool MainWindow::createConnection()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE"); //QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName("localhost");
     db.setDatabaseName("testdb");
     db.setUserName("root");
     db.setPassword("rootpassword");
+    qDebug() << "Done";
 
 }
