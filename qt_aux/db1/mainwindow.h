@@ -7,6 +7,7 @@
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlDriver>
 #include <QtSql/QSqlQuery>
+#include <QtSql/QSqlError>
 #include <QDebug>
 
 namespace Ui {
