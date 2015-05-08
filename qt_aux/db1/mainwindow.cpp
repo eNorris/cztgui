@@ -29,17 +29,60 @@ bool MainWindow::createConnection()
     qDebug("%s.", qPrintable(db.lastError().text()));
 
     QSqlQuery query(db);
-    bool qgood = query.exec("select firstname from patient where gender == 'f'");
+    bool qgood = query.exec("select firstname from patient where gender == 'm'");
 
     if(qgood)
     {
         qDebug() << "Query returned success";
         qDebug("%s.", qPrintable(db.lastError().text()));
+
+        int numrows = -1;
+        if(db.driver()->hasFeature(QSqlDriver::QuerySize))
+            numrows = query.size();
+        else
+        {
+            query.last();
+            numrows = query.at() + 1;
+        }
+        query.first();
+        query.previous();
+
+        qDebug() << "Results: " << numrows;
+
+        while(query.next())
+        {
+            QString name = query.value(0).toString();
+            qDebug() << name;
+        }
+
     }
     else
     {
         qDebug() << "Qeury failed";
         qDebug("%s.", qPrintable(db.lastError().text()));
     }
+
+    // Add a new row
+    QSqlQuery q2;
+    q2.prepare("INSERT INTO patient VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+    q2.addBindValue("Alex");
+    q2.addBindValue("Q.");
+    q2.addBindValue("Dzurick");
+    q2.addBindValue(556);
+    q2.addBindValue("m");
+    q2.addBindValue("9/8/1989");
+    q2.addBindValue(445.3);
+    q2.addBindValue(211.1);
+    if(!q2.exec())
+    {
+        qDebug() << "q2 Query failed!";
+    }
+
+    QSqlQuery q3;
+    if(!q3.exec("UPDATE patient SET firstname = 'Manish' WHERE id = 1"))
+    {
+        qDebug() << "q3 Query failed!";
+    }
+
 
 }
