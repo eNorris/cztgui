@@ -83,6 +83,4 @@ bool MainWindow::createConnection()
     {
         qDebug() << "q3 Query failed!";
     }
-
-
 }
