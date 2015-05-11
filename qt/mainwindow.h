@@ -6,6 +6,12 @@
 #include <QDateTime>
 #include <QVector>
 
+#include <QtSql/QSql>
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlDriver>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlError>
+
 #include "patientdata.h"
 
 class ProtocolDialog;
@@ -22,12 +28,20 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void buildPatientDataBase();
+    //void buildPatientDataBase();
 
 protected:
     ProtocolDialog *protocolDialog;
+    QSqlDatabase *db;
+    QStandardItemModel *model;
 
     QVector<PatientData*> patientVector;
+
+    QSqlDatabase* db_connect(QString dbname);
+    void dbFetchPatientInfo();
+    void buildModel();
+    void updateSheet();
+
 
 private:
     Ui::MainWindow *ui;
