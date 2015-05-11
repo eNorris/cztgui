@@ -13,6 +13,8 @@ public:
     //PatientData(const PatientObject &src);
     ~PatientData();
 
+    bool operator<(const PatientData& other) const;
+
     void build(QString firstname, QString middlename, QString lastname, int patientid, QString gender, QDate birthdate, float wt, float ht);
 
     QString firstName;
@@ -29,5 +31,7 @@ signals:
 
 public slots:
 };
+
+
 
 #endif // PATIENTDATA_H

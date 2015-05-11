@@ -10,6 +10,7 @@ PatientInfoForm::PatientInfoForm(QWidget *parent) :
     ui->ageSpinBox->setReadOnly(true);
 
     connect(ui->birthdateDateEdit, SIGNAL(dateChanged(QDate)), this, SLOT(updateAge(QDate)));
+    updateAge(ui->birthdateDateEdit->date());
 
 }
 

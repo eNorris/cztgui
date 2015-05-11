@@ -56,6 +56,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->tableView, SIGNAL(clicked(QModelIndex)), this, SLOT(updateChildren(QModelIndex)));
 
+    connect(ui->tableView, SIGNAL(activated(QModelIndex)), this, SLOT(updateChildren(QModelIndex)));
+
     connect(this, SIGNAL(emitUpdateChildren(QModelIndex, QVector<PatientData*>&)), ui->patientInfoForm, SLOT(updateChildren(QModelIndex, QVector<PatientData*>&)));
 
     //connect(ui->tableView, SIGNAL(clicked(QModelIndex)), pat, SLOT(updateChildren(QModelIndex)));
@@ -154,9 +156,9 @@ QSqlDatabase* MainWindow::db_connect(QString dbname)
         db = NULL;
     }
 
-    qDebug() << "before creation: " << db;
+    //qDebug() << "before creation: " << db;
     db = new QSqlDatabase;
-    qDebug() << "after creation: " << db;
+    //qDebug() << "after creation: " << db;
 
     *db = QSqlDatabase::addDatabase("QSQLITE");
     db->setHostName("localhost");
@@ -165,30 +167,30 @@ QSqlDatabase* MainWindow::db_connect(QString dbname)
     db->setPassword("rootpassword");
 
     bool ok = db->open();
-    qDebug() << "ok = " << ok;
-    qDebug("%s.", qPrintable(db->lastError().text()));
+    //qDebug() << "ok = " << ok;
+    //qDebug("%s.", qPrintable(db->lastError().text()));
 
     return db;
 }
 
 void MainWindow::dbFetchPatientInfo()
 {
-    qDebug() << "fetching...";
+    //qDebug() << "fetching...";
 
     if(db == NULL)
         qDebug() << "NULL Database!";
 
-    qDebug() << db;
+    //qDebug() << db;
 
     QSqlQuery query(*db);
     bool qgood = query.exec("select * from patient");
 
-    qDebug() << "exec'd";
+    //qDebug() << "exec'd";
 
     if(qgood)
     {
-        qDebug() << "Query returned success";
-        qDebug("%s.", qPrintable(db->lastError().text()));
+        //qDebug() << "Query returned success";
+        //qDebug("%s.", qPrintable(db->lastError().text()));
 
         while(query.next())
         {
@@ -198,13 +200,15 @@ void MainWindow::dbFetchPatientInfo()
             p->lastName = query.value(2).toString();
             p->patientId = query.value(3).toInt();
             p->gender = query.value(4).toString();
-            p->birthdate = QDate::fromString(query.value(5).toString());
+            //QDate d = QDate::fromString(query.value(5).toString(), "M/d/yyyy");
+            //qDebug() << "Date birthdate = " << d.toString();
+            p->birthdate = QDate::fromString(query.value(5).toString(), "M/d/yyyy");
             p->weight = query.value(6).toFloat();
             p->height = query.value(7).toFloat();
 
-            QString name = query.value(0).toString();
-            qDebug() << "MainWindow::dbFetchPatientInfo(): Read: " << name;
-            qDebug() << "birthdate = " << query.value(5).toString();
+            //QString name = query.value(0).toString();
+            //qDebug() << "MainWindow::dbFetchPatientInfo(): Read: " << name;
+            //qDebug() << "birthdate = " << query.value(5).toString();
             patientVector.append(p);
         }
     }
@@ -225,6 +229,9 @@ void MainWindow::buildModel()
     model->setHorizontalHeaderItem(3, new QStandardItem(QString("Start Date/Time")));
     model->setHorizontalHeaderItem(4, new QStandardItem(QString("Status")));
     model->setHorizontalHeaderItem(5, new QStandardItem(QString("Accession Number")));
+
+    //model->sort(3, Qt::AscendingOrder);
+
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 
@@ -232,6 +239,8 @@ void MainWindow::buildModel()
 
 void MainWindow::updateSheet()
 {
+
+    qSort(patientVector.begin(), patientVector.end(), PtrLess<PatientData>());
 
     for(int i = 0; i < patientVector.size(); i++)
     {

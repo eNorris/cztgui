@@ -157,14 +157,24 @@
      </item>
      <item>
       <widget class="QDateEdit" name="birthdateDateEdit">
+       <property name="dateTime">
+        <datetime>
+         <hour>0</hour>
+         <minute>0</minute>
+         <second>0</second>
+         <year>1990</year>
+         <month>1</month>
+         <day>1</day>
+        </datetime>
+       </property>
        <property name="displayFormat">
         <string>M/d/yyyy</string>
        </property>
        <property name="date">
         <date>
-         <year>1999</year>
-         <month>8</month>
-         <day>3</day>
+         <year>1990</year>
+         <month>1</month>
+         <day>1</day>
         </date>
        </property>
       </widget>
