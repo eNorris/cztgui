@@ -24,57 +24,6 @@ SystemForm::SystemForm(QWidget *parent) :
     cathodeDialog = new CathodeDialog(this);
     systemConfigDialog = new SystemConfigDialog(this);
 
-    // From mainwindow.cpp
-    /*
-    for(int i = 0; i < 128; i++)
-    {
-        anodeDialog->ui->anodeChannelNoCombo->addItem(QString("%1").arg(i + 1));
-        anodeDialog->ui->anodeChannelMonitorCombo->addItem(QString("%1").arg(i + 1));
-        //ui->anodeChannelNoCombo->addItem(QString("%1").arg(i + 1));
-        //ui->anodeChannelMonitorCombo->addItem(QString("%1").arg(i + 1));
-    }
-    */
-
-    /*
-    for(int i = 0; i < 2; i++)
-    {
-        ui->cathodeChannelNoCombo->addItem(QString("%2").arg((i + 1)));
-    }
-    */
-
-    // anode and cathode
-    //UpdateHGAffectedWidgets(false);
-
-    /*
-    ui->individualAnodeRadio->setChecked(true);  // anode
-    ui->individualCathodeRadio->setChecked(true); // cathode
-
-    ui->disconnectButton->setEnabled(false);  // connect
-    ui->stopSysBtn->setEnabled(false);  //sysconfig
-    ui->startCollectBtn->setEnabled(false);  //sysconfig
-    ui->stopCollectBtn->setEnabled(false);  //sysconfig
-
-    ui->DACScombo->setEnabled(false);  //globalconfig
-    ui->cathEnergyTimingCombo->setEnabled(false);   //cathode
-    ui->anodeChannelMonitorCombo->setEnabled(false);  //andoe
-
-    connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
-
-    QScrollArea* l_ScrollArea = new QScrollArea(this);
-    l_ScrollArea->setWidget(ui->tabWidget);
-
-    setCentralWidget(l_ScrollArea);
-
-    // disable all non-connect tabs until we connect
-    EnableNonConnectTabs(false);
-    */
-
-    //connect(ui->browseButton, SIGNAL(clicked()), this, SLOT(on_browseClicked()));
-    //connect(ui->connectButton, SIGNAL(clicked()), this, SLOT(on_connectClicked()));
-    //connect(ui->fpgaButton, SIGNAL(clicked()), this, SLOT(on_fpgaClicked()));
-    //connect(ui->configButton, SIGNAL(clicked()), this, SLOT(on_globalClicked()));
-    //connect(ui->anodeButton, SIGNAL(clicked()), this, SLOT(on_anodeClicked()));
-    //connect(ui->cathodeButton, SIGNAL(clicked()), this, SLOT(on_cathodeClicked()));
 
     ui->lcdNumber->display(28);
 
@@ -84,49 +33,9 @@ SystemForm::SystemForm(QWidget *parent) :
 
     ClickablePlot *customPlot = ui->customPlot;
     customPlot->setDims(NX, NY);
-    //colorScale = new QCPColorScale(ui->customPlot);
-    //marginGroup = new QCPMarginGroup(ui->customPlot);
 
     engine = new SimEngine(NX, NY);  // Pixel array
 
-    //customPlot->axisRect()->setupFullAxesBox(true);
-    //customPlot->xAxis->setLabel("x");
-    //customPlot->yAxis->setLabel("y");
-    //customPlot->addGraph();
-
-    // set up the QCPColorMap:
-    //nx = 22;
-    //ny = 22;
-    //colorMap = new QCPColorMap(customPlot->xAxis, customPlot->yAxis);
-    //customPlot->addPlottable(colorMap);
-    //ui->customPlot->setColorMap(colorMap);
-
-    //colorMap->data()->setSize(NX, NY); // we want the color map to have nx * ny data points
-    //colorMap->data()->setRange(QCPRange(0, NX), QCPRange(0, NY)); // and span the coordinate range -4..4 in both key (x) and value (y) dimensions
-    // now we assign some data, by accessing the QCPColorMapData instance of the color map:
-
-    //ui->customPlot->plotLayout()->addElement(0, 1, colorScale); // add it to the right of the main axis rect
-    //colorScale->setType(QCPAxis::atRight); // scale shall be vertical bar with tick/axis labels right (actually atRight is already the default)
-    //colorMap->setColorScale(colorScale); // associate the color map with the color scale
-    //colorScale->axis()->setLabel("Intensity [counts]");
-
-    // make sure the axis rect and color scale synchronize their bottom and top margins (so they line up):
-    //QCPMarginGroup *marginGroup = new QCPMarginGroup(ui->customPlot);
-    //ui->customPlot->axisRect()->setMarginGroup(QCP::msBottom|QCP::msTop, marginGroup);
-    //colorScale->setMarginGroup(QCP::msBottom|QCP::msTop, marginGroup);
-
-    // set the color gradient of the color map to one of the presets:
-    //colorMap->setGradient(QCPColorGradient::gpPolar);
-    //colorMap->setGradient(QCPColorGradient::gpJet);
-    //colorMap->rescaleDataRange();  // Put this in the real time loop to auto scale
-    //colorMap->setDataRange(QCPRange(0.0, 1.0));
-
-    // rescale the key (x) and value (y) axes so the whole color map is visible:
-    //ui->customPlot->rescaleAxes();
-
-    //connect(&dataTimer, SIGNAL(timeout()), this, SLOT(rt2DDataSlot()));
-    //dataTimer.start(30); // Interval 0 means to refresh as fast as possible
-    //connect()
 
     if(SpectDMDll::SetGMUpdateType(GMUpdateType_Broadcast))
     {
@@ -144,13 +53,6 @@ SystemForm::SystemForm(QWidget *parent) :
 
     connect(connectDialog, SIGNAL(connected()), this, SLOT(loadDefaults()));
 
-    //connect(ui->customPlot, SIGNAL(addmousemoved(int, int)), engine, SLOT(adddiffuse(int,int)), Qt::DirectConnection);
-    //connect(ui->customPlot, SIGNAL(submousemoved(int, int)), engine, SLOT(subdiffuse(int,int)), Qt::DirectConnection);
-    //connect(ui->actionStop, SIGNAL(triggered()), engine, SLOT(stop()), Qt::DirectConnection);
-
-    //connect(ui->customPlot, SIGNAL(wheelscroll(int)), ui->verticalSlider, SLOT(autoscroll(int)));
-    //connect(ui->verticalSlider, SIGNAL(newpressure(double)), engine, SLOT(setPressure(double)), Qt::DirectConnection);
-
     connect(&dataTimer, SIGNAL(timeout()), this, SLOT(fpsUnbound()));
     dataTimer.start(1000.0 / FPS_LIMIT); // Interval 0 means to refresh as fast as possible
 
@@ -158,17 +60,10 @@ SystemForm::SystemForm(QWidget *parent) :
     connect(engine, SIGNAL(update(double, double**)), this, SLOT(updatesurf(double, double**)));
     connect(engine, SIGNAL(finished()), thread, SLOT(quit()));
     connect(engine, SIGNAL(finished()), engine, SLOT(deleteLater()));
-    //connect(engine, SIGNAL(error(QString)), this, SLOT(errorString(QString)));
-    //connect(thread, SIGNAL(started()), engine, SLOT(run()));
     connect(this, SIGNAL(startRunning(int,float,float)), engine, SLOT(run(int, float, float)));
     connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
     engine->moveToThread(thread);
     thread->start();
-
-    //QString dir = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
-    //                                             "/home",
-    //                                             QFileDialog::ShowDirsOnly
-    //                                             | QFileDialog::DontResolveSymlinks);
 }
 
 SystemForm::~SystemForm()
@@ -337,12 +232,6 @@ void SystemForm::updatesurf(double t, double **data)
     ++frameCount;
     if (key-lastFpsKey > 2) // average fps over 2 seconds
     {
-      //ui->statusBar->showMessage(
-      //      QString("%1 FPS, %2 Sim Updates/sec, Average Intensity: %3")
-       //     .arg(frameCount/(key-lastFpsKey), 0, 'f', 2)
-       //     .arg(simcount/(key-lastFpsKey), 0, 'f', 2)
-       //     .arg(total, 2, 'f', 4)
-       //     , 0);
       lastFpsKey = key;
       frameCount = 0;
       simcount = 0;
