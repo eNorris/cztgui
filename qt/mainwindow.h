@@ -43,7 +43,7 @@ protected:
     void updateSheet();
 
 
-private:
+public:
     Ui::MainWindow *ui;
 
 signals:

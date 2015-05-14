@@ -244,4 +244,8 @@ void SystemForm::fpsUnbound()
     fpsBound = false;
 }
 
+void SystemForm::doStartRunning(int imgs, float exposuretime, float latency)
+{
+    emit startRunning(imgs, exposuretime, latency);
+}
 

@@ -40,11 +40,6 @@ SystemConfigDialog *SystemConfigDialog::GetInstance()
     return m_pInstance;
 }
 
-//void SystemConfigDialog::SysStatusCallbackFunc(const char *a_Data)
-//{
-//    GetInstance()->AddSysStatusEntry(a_Data);
-//
-
 void SystemConfigDialog::AddSysStatusEntry(const std::string &a_Status)
 {
     ui->sysStatusTextArea->append(createTimestampedStr(a_Status));
@@ -254,28 +249,6 @@ void SystemConfigDialog::on_sendConfigButton_clicked()
             l_Success = false;
         }
     }
-
-//    if(l_Success)
-//    {
-//        if(ui->gmUpdateBtnGroup->checkedButton())
-//        {
-//            GMUpdateType l_Type = GMUpdateType_Undefined;
-
-//            if(ui->updateSingleGMRadio->isChecked())
-//            {
-//                l_Type = GMUpdateType_SingleGM;
-//            }
-//            else if(ui->updateBroadcastRadio->isChecked())
-//            {
-//                l_Type = GMUpdateType_Broadcast;
-//            }
-
-//            if(!SpectDMDll::SetGMUpdateType(l_Type))
-//            {
-//                l_Success = false;
-//            }
-//        }
-//    }
 
     // If camera update mode is auto then functions above would have sent data down to device
     if(l_Success && SpectDMDll::GetCameraUpdateMode() == CameraUpdateMode_Manual)

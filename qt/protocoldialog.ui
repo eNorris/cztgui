@@ -24,7 +24,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QDoubleSpinBox" name="protocolTimeSpinBox"/>
+      <widget class="QDoubleSpinBox" name="countingTime"/>
      </item>
     </layout>
    </item>
@@ -45,19 +45,6 @@
       </widget>
      </item>
     </layout>
-   </item>
-   <item row="3" column="0">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
    </item>
    <item row="4" column="0">
     <widget class="QDialogButtonBox" name="buttonBox">
@@ -85,7 +72,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="startButton">
        <property name="text">
         <string>Start</string>
        </property>
@@ -93,8 +80,29 @@
      </item>
     </layout>
    </item>
+   <item row="3" column="0">
+    <widget class="ClickablePlot" name="customPlot" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ClickablePlot</class>
+   <extends>QWidget</extends>
+   <header location="global">clickableplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

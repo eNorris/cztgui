@@ -75,6 +75,7 @@ public slots:
     void updatesurf(double t, double **data);
     void fpsUnbound();
     void loadDefaults();
+    void doStartRunning(int imgs, float exposuretime, float latency);
 };
 
 #endif // SYSTEMFORM_H
