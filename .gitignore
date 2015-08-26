@@ -34,3 +34,4 @@
 # Other C++ compiler stuff
 *~
 *.ii
+/build-cztgui-Desktop_Qt_5_4_1_GCC_64bit-Debug/
