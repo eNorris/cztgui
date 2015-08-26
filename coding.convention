@@ -1,0 +1,39 @@
+Project: CZT GUI
+Authors: Edward Norris (etnc6d@mst.edu)
+         Dr. Xin Liu (xinliu@mst.edu)
+
+Description:
+
+Conventions:
+
+1. Spacing
+    1.1 Indentation
+        All indentation will use 4 spaces per indent
+    1.2 Parenthesis and Brackets
+        There will be no space surrounding parethesis. Curly brackets will appear directly below the contion they are associated with. For example:
+            if(condition)
+            {
+                code()
+            }
+
+2. Capitalization
+    2.1 Class Names
+        All class names will begin with a capital and each subsequent key word will also be capitalized. Acronyms and abbreviations will only have the first letter capitalized. For example:
+            CztGui
+            ASingleClass
+            ClassA
+            FbiOrCia
+    2.2 Variable Names
+        Variable names will use camel case. For example:
+            variable1
+            otherVariable
+            yetAnotherVariableWithALongName
+    2.3 Global Constants
+        Global constants will be in ALL CAPS with an underscore between key words. For example:
+            VARIABLE1
+            OTHER_VARIABLE
+            YET_ANOTHER_VARIABLE_WITH_A_LONG_NAME
+
+3. Line Length
+    Lines should not exceed 120 characters
+
