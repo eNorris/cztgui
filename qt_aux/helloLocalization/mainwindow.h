@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTranslator>
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,20 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    //QAction *fileAction;
+    //QMenu *menu;
+    //QTranslator *translator1;
+    //QTranslator *translator2;
+    QTranslator *translator;
+
+    void retranslateUi();
+
+protected:
+    void changeEvent(QEvent *event);
+
+public slots:
+    void changeMyLang(const QString & string);
 };
 
 #endif // MAINWINDOW_H

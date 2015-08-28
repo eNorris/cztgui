@@ -18,3 +18,9 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
+
+TRANSLATIONS = app_sp.ts \
+               app_fr.ts
+
+CODECFORTR = ISO-8859-5
+CODECFORSRC = UTF-8
