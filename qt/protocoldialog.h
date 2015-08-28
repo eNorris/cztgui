@@ -43,6 +43,11 @@ private:
     const static float FPS_LIMIT = 30.0;
     bool fpsBound;
 
+protected:
+    //liu added
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent*); //liu added
+
 signals:
     void startRunning(int, float, float);
 

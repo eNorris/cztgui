@@ -28,6 +28,12 @@ public:
     void UpdateASICCathodeItems();
     void UpdateHGAffectedWidgets(bool a_HGSet);
 
+protected:
+    //liu added
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent*); //liu added
+
+
 public slots:
     void on_cathode_UpdateASICButton_clicked();
     void on_updateCathodeChannelButton_clicked();

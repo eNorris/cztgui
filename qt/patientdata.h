@@ -5,6 +5,7 @@
 #include <QString>
 #include <QDate>
 
+
 class PatientData : public QObject
 {
     Q_OBJECT
@@ -26,6 +27,7 @@ public:
     QDate birthdate;
     float weight;  // kg
     float height;  // cm
+
 
 signals:
 

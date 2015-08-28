@@ -19,6 +19,12 @@ public:
 
 private:
     Ui::TransferLogForm *ui;
+
+protected:
+    //liu added
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent*); //liu added
+
 };
 
 #endif // TRANSFERLOGFORM_H

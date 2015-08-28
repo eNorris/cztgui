@@ -34,6 +34,11 @@ protected:
 
     void UpdateASICAnodeItems();
 
+    //liu added
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent*); //liu added
+
+
 protected slots:
     void on_ASICGlobal_UpdateASICButton_clicked();
 };

@@ -24,6 +24,13 @@ public:
 private:
     Ui::PatientInfoForm *ui;
 
+protected:
+    //liu added
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent*); //liu added
+
+
+
 public slots:
     void updateChildren(QModelIndex idx, QVector<PatientData*> &data);
     void updateAge(QDate date);

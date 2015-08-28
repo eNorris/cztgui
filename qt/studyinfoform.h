@@ -18,6 +18,11 @@ public:
 private:
     Ui::StudyInfoForm *ui;
 
+protected:
+    //liu added
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent*); //liu added
+
 //protected slots:
 //    void on_
 };

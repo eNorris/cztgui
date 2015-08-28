@@ -41,3 +41,4 @@ void PatientData::build(QString firstname, QString middlename, QString lastname,
     this->weight = wt;
     this->height = ht;
 }
+

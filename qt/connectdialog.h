@@ -48,6 +48,12 @@ private slots:
 private:
     Ui::ConnectDialog *ui;
     static bool m_Connected;
+
+protected:
+    //liu added
+    // this event is called, when a new translator is loaded or the system language is changed
+    void changeEvent(QEvent*); //liu added
+
 };
 
 #endif // CONNECTDIALOG_H

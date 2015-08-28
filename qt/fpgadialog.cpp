@@ -246,3 +246,34 @@ void FpgaDialog::on_UpdateGMButton_clicked()
         QMessageBox::warning(this, "SpectDM", SpectDMDll::GetLastError().c_str());
     }
 }
+
+
+// liu added
+void FpgaDialog::changeEvent(QEvent* event)
+{
+    if(0 != event)
+    {
+        switch(event->type())
+        {
+        // this event is send if a translator is loaded
+            case QEvent::LanguageChange:
+            ui->retranslateUi(this);
+            break;
+
+        default:
+            // Do nothing
+            break;
+
+        // this event is send, if the system, language changes
+        //  case QEvent::LocaleChange:
+        //  {
+        //    QString locale = QLocale::system().name();
+        //    locale.truncate(locale.lastIndexOf('_'));
+        //    loadLanguage(locale);
+        //  }
+        //  break;
+        }
+    }
+    QWidget::changeEvent(event);
+}
+//liu added end

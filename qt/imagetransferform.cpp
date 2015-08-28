@@ -9,10 +9,10 @@ ImageTransferForm::ImageTransferForm(QWidget *parent) :
 
     QStandardItemModel *model = new QStandardItemModel(2,5,this); //2 Rows and 5 Columns
     model->setHorizontalHeaderItem(0, new QStandardItem(QString(tr("Patient Name"))));
-    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Patient Id")));
-    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Study Name")));
-    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Start Date")));
-    model->setHorizontalHeaderItem(4, new QStandardItem(QString("Study Description")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString(tr("Patient Id"))));
+    model->setHorizontalHeaderItem(2, new QStandardItem(QString(tr("Study Name"))));
+    model->setHorizontalHeaderItem(3, new QStandardItem(QString(tr("Start Date"))));
+    model->setHorizontalHeaderItem(4, new QStandardItem(QString(tr("Study Description"))));
     //model->setHorizontalHeaderItem(5, new QStandardItem(QString("Accession Number")));
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -31,3 +31,31 @@ ImageTransferForm::~ImageTransferForm()
 {
     delete ui;
 }
+
+
+// liu added
+void ImageTransferForm::changeEvent(QEvent* event)
+{
+  if(0 != event) {
+    switch(event->type()) {
+    // this event is send if a translator is loaded
+        case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        // Do nothing
+        break;
+
+    // this event is send, if the system, language changes
+    //  case QEvent::LocaleChange:
+    //  {
+    //    QString locale = QLocale::system().name();
+    //    locale.truncate(locale.lastIndexOf('_'));
+    //    loadLanguage(locale);
+    //  }
+    //  break;
+    }
+  }
+ QWidget::changeEvent(event);
+}
+//liu added end
