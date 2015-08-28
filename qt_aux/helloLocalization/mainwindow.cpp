@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QDebug>
+#include <QDialog>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -14,23 +15,27 @@ MainWindow::MainWindow(QWidget *parent) :
     translator = new QTranslator(this);
 
     connect(ui->languageComboBox, SIGNAL(activated(const QString &)), this, SLOT(changeMyLang(const QString &)));
-    retranslateUi();
+    ui->retranslateUi(this);
 }
 
+/*
 void MainWindow::retranslateUi()
 {
+    ui->retranslateUi(this);
     qDebug() << "->retranslateUi";
-    ui->menuFile->setTitle(tr("File"));
-    ui->actionFirst_Action->setText(tr("First Action"));
-    ui->outputLabel->setText(tr("My translated text"));
+    //ui->menuFile->setTitle(tr("File"));
+    //ui->actionFirst_Action->setText(tr("First Action"));
+    //ui->outputLabel->setText(tr("My translated text"));
 }
+*/
 
 void MainWindow::changeEvent(QEvent *event)
 {
     qDebug() << "->changeEvent()";
     if(event->type() == QEvent::LanguageChange)
     {
-        retranslateUi();
+        //retranslateUi();
+        ui->retranslateUi(this);
     }
     QMainWindow::changeEvent(event);
 }
@@ -61,7 +66,6 @@ void MainWindow::changeMyLang(const QString & string)
         qApp->removeTranslator(translator);
         //qApp->removeTranslator(translator2);
     }
-
 }
 
 MainWindow::~MainWindow()

@@ -25,7 +25,7 @@ private:
     //QTranslator *translator2;
     QTranslator *translator;
 
-    void retranslateUi();
+    //void retranslateUi();
 
 protected:
     void changeEvent(QEvent *event);
