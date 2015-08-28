@@ -73,7 +73,7 @@ void MainWindow::createLanguageMenu(void)
 
         QString lang = QLocale::languageToString(QLocale(locale).language());
         QIcon ico(QString("%1/%2.png").arg(m_langPath).arg(locale));
-        //qDebug() << lang;
+        qDebug() << QString("%1/%2.png").arg(m_langPath).arg(locale);
 
         QAction *action = new QAction(ico, lang, this);
         action->setCheckable(true);

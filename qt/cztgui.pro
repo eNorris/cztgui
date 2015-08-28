@@ -85,6 +85,9 @@ else:unix: LIBS += -L$$PWD/ -lSpectDMSharedLib
 INCLUDEPATH += $$PWD/
 DEPENDPATH += $$PWD/
 
-RESOURCES +=
+RESOURCES += \
+    images/img.qrc
 
 TRANSLATIONS = languages/cztgui_en.ts  languages/cztgui_zh.ts
+
+DISTFILES +=

@@ -39,7 +39,7 @@
        <string notr="true">background-image: url(:/images/bg_logo.jpg);</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -259,12 +259,13 @@
    <addaction name="action_Help"/>
    <addaction name="separator"/>
    <addaction name="actionLogo"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="action_Help">
    <property name="icon">
-    <iconset resource="uts_gui.qrc">
-     <normaloff>:/images/help-browser.png</normaloff>:/images/help-browser.png</iconset>
+    <iconset resource="cztgui_resources.qrc">
+     <normaloff>:/images.trashed/help-browser.png</normaloff>:/images.trashed/help-browser.png</iconset>
    </property>
    <property name="text">
     <string>Question</string>
@@ -272,7 +273,7 @@
   </action>
   <action name="actionLogo">
    <property name="icon">
-    <iconset resource="uts_gui.qrc">
+    <iconset>
      <normaloff>:/images/small_logo.jpg</normaloff>:/images/small_logo.jpg</iconset>
    </property>
    <property name="text">
@@ -320,7 +321,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="uts_gui.qrc"/>
+  <include location="cztgui_resources.qrc"/>
  </resources>
  <connections/>
 </ui>
