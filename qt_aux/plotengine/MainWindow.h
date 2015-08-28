@@ -6,8 +6,8 @@
 #include <QThread>
 
 #include "utils.h"
-//#include "SimEngine.h"
-#include "cudaengine.h"
+#include "SimEngine.h"
+//#include "cudaengine.h"
 
 class QCPColorMap;
 class QCPColorScale;
@@ -40,8 +40,8 @@ private:
     QCPColorScale *colorScale;
     QCPMarginGroup *marginGroup;
 
-    //SimEngine *engine;
-    CudaEngine *engine;
+    SimEngine *engine;
+    //CudaEngine *engine;
 
     const static float FPS_LIMIT = 30.0;
     bool fpsBound;

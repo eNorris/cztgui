@@ -1,5 +1,6 @@
 #ifndef CUDAENGINE_H
 #define CUDAENGINE_H
+/*
 
 #include <QObject>
 #include <QApplication>
@@ -50,5 +51,6 @@ protected:
 
 
 };
+*/
 
 #endif // CUDAENGINE_H

@@ -11,11 +11,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ClickablePlot *customPlot = ui->customPlot;
     customPlot->setDims(NX, NY);
 
-    engine = new CudaEngine(NX, NY);
-    engine->setSimRate(30);
+    engine = new SimEngine(NX, NY);  //new CudaEngine(NX, NY);
+    //engine->setSimRate(30);
 
-    connect(ui->customPlot, SIGNAL(addmousemoved(int, int)), engine, SLOT(adddiffuse(int,int)), Qt::QueuedConnection);
-    connect(ui->customPlot, SIGNAL(submousemoved(int, int)), engine, SLOT(subdiffuse(int,int)), Qt::QueuedConnection);
+    connect(ui->customPlot, SIGNAL(addmousemoved(int, int)), engine, SLOT(adddiffuse(int,int)), Qt::DirectConnection);
+    connect(ui->customPlot, SIGNAL(submousemoved(int, int)), engine, SLOT(subdiffuse(int,int)), Qt::DirectConnection);
     connect(ui->actionStop, SIGNAL(triggered()), engine, SLOT(stop()), Qt::DirectConnection);
 
     connect(ui->customPlot, SIGNAL(wheelscroll(int)), ui->verticalSlider, SLOT(autoscroll(int)));

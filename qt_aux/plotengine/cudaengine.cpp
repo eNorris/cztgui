@@ -1,4 +1,5 @@
 #include "cudaengine.h"
+/*
 
 CudaEngine::CudaEngine() : QObject(), built(false), running(false), nx(0), ny(0), t(0), pressure(1.0),
     data(NULL), prevdata(NULL), maxSimRate(1.0), simRateBounded(false)
@@ -155,3 +156,4 @@ void CudaEngine::unboundSimRate()
 {
     simRateBounded = false;
 }
+*/
