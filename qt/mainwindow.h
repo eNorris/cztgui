@@ -52,9 +52,6 @@ protected:
     void buildModel();
     void updateSheet();
 
-
-
-
 signals:
     void emitUpdateChildren(QModelIndex, QVector<PatientData*>&);
 

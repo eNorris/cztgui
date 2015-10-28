@@ -20,16 +20,14 @@ MainWindow::MainWindow(QWidget *parent) :
     protocolDialog = new ProtocolDialog(this);
 
     //buildPatientDataBase();
-    //db = db_connect("/media/Storage/cztgui/qt/patientdata.db");
-    db = db_connect("patientdata.db"); //liu added
+    db = db_connect("/media/Storage/cztgui/qt/patientdata.db");
+    //db = db_connect("patientdata.db"); //liu added
     dbFetchPatientInfo();
     buildModel();
     updateSheet();
 
     connect(ui->tableView, SIGNAL(clicked(QModelIndex)), this, SLOT(updateChildren(QModelIndex)));
-
     connect(ui->tableView, SIGNAL(activated(QModelIndex)), this, SLOT(updateChildren(QModelIndex)));
-
     connect(this, SIGNAL(emitUpdateChildren(QModelIndex, QVector<PatientData*>&)), ui->patientInfoForm, SLOT(updateChildren(QModelIndex, QVector<PatientData*>&)));
 
     //connect(ui->tableView, SIGNAL(clicked(QModelIndex)), pat, SLOT(updateChildren(QModelIndex)));
@@ -268,7 +266,7 @@ void MainWindow::dbFetchPatientInfo()
     else
     {
         qDebug() << "Query returned failure!";
-        qDebug("%s.", qPrintable(db->lastError().text()));
+        qDebug("Last Erfor: %s", qPrintable(db->lastError().text()));
 
     }
 }

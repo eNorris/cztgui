@@ -26,7 +26,8 @@ bool MainWindow::createConnection()
 
     bool ok = db.open();
     qDebug() << "ok = " << ok;
-    qDebug("%s.", qPrintable(db.lastError().text()));
+    if(!ok)
+        qDebug("Error: %s", qPrintable(db.lastError().text()));
 
     QSqlQuery query(db);
     bool qgood = query.exec("select firstname from patient where gender == 'm'");
@@ -59,7 +60,7 @@ bool MainWindow::createConnection()
     else
     {
         qDebug() << "Qeury failed";
-        qDebug("%s.", qPrintable(db.lastError().text()));
+        qDebug("Error: %s", qPrintable(db.lastError().text()));
     }
 
     // Add a new row
@@ -76,11 +77,13 @@ bool MainWindow::createConnection()
     if(!q2.exec())
     {
         qDebug() << "q2 Query failed!";
+        qDebug("Error: %s", qPrintable(db.lastError().text()));
     }
 
     QSqlQuery q3;
     if(!q3.exec("UPDATE patient SET firstname = 'Manish' WHERE id = 1"))
     {
         qDebug() << "q3 Query failed!";
+        qDebug("Error: %s", qPrintable(db.lastError().text()));
     }
 }

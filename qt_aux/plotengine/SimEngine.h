@@ -40,7 +40,6 @@ protected:
     double **data;
     double **prevdata;
 
-
 };
 
 #endif // SIMENGINE
