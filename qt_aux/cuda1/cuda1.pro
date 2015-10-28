@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui opengl
 
 # Manually add printsupport to QCustomPlot packages
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
