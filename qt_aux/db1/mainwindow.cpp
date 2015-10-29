@@ -19,8 +19,8 @@ bool MainWindow::createConnection()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE"); //QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName("localhost");
-    db.setDatabaseName("/media/Storage/cztgui/qt_aux/db1/patientdata.db");
-    //db.setDatabaseName("/media/Storage/catgui/qt_aux/db1/patientdfgdfgdata.db");
+    db.setDatabaseName("../patientdata.db");
+    //db.setDatabaseName("/media/Storage/cztgui/qt_aux/db1/patientdfgdfgdata.db");
     db.setUserName("root");
     db.setPassword("rootpassword");
 
@@ -66,14 +66,14 @@ bool MainWindow::createConnection()
     // Add a new row
     QSqlQuery q2;
     q2.prepare("INSERT INTO patient VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-    q2.addBindValue("Alex");
-    q2.addBindValue("Q.");
-    q2.addBindValue("Dzurick");
-    q2.addBindValue(556);
+    q2.addBindValue("John");
+    q2.addBindValue("M.");
+    q2.addBindValue("Davids");
+    q2.addBindValue(500);
     q2.addBindValue("m");
-    q2.addBindValue("9/8/1989");
-    q2.addBindValue(445.3);
-    q2.addBindValue(211.1);
+    q2.addBindValue("9/9/1989");
+    q2.addBindValue(420.3);
+    q2.addBindValue(200.1);
     if(!q2.exec())
     {
         qDebug() << "q2 Query failed!";
