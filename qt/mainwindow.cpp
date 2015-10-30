@@ -20,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     protocolDialog = new ProtocolDialog(this);
 
     //buildPatientDataBase();
-    db = db_connect("/media/Storage/cztgui/qt/patientdata.db");
+    db = db_connect("../patientdata.db");
     //db = db_connect("patientdata.db"); //liu added
     dbFetchPatientInfo();
     buildModel();
@@ -229,6 +229,12 @@ QSqlDatabase* MainWindow::db_connect(QString dbname)
     db->setDatabaseName(dbname);
     db->setUserName("root");
     db->setPassword("rootpassword");
+
+    // TODO for testing
+    bool ok = db->open();
+    qDebug() << "ok = " << ok;
+    if(!ok)
+        qDebug("Error: %s", qPrintable(db->lastError().text()));
 
     //bool ok = db->open();
     //qDebug() << "ok = " << ok;

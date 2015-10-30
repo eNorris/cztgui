@@ -76,7 +76,7 @@ bool MainWindow::createConnection()
     q2.addBindValue(200.1);
     if(!q2.exec())
     {
-        qDebug() << "q2 Query failed!";
+        qDebug() << "q2 Query failed! (is this entry already in the database?)";
         qDebug("Error: %s", qPrintable(db.lastError().text()));
     }
 
