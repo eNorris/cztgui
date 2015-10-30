@@ -2,11 +2,18 @@ create table patient(
   firstname TEXT,
   middlename TEXT,
   lastname TEXT,
-  id INTEGER primary key,
+  id INTEGER primary key NOT NULL,
   gender TEXT,
   birthdate TEXT,
   weight REAL,
-  height REAL);
+  height REAL
+);
+
+create table images(
+  patientid INTEGER,
+  filename TEXT,
+  FOREIGN KEY(patientid) REFERENCES patient(id)
+);
 
 insert into patient values('Manish', '', 'Sharma', 
   1, 'm', '1/1/2020', 143.6, 201.2);
@@ -40,6 +47,14 @@ insert into patient values('Hank', '', 'Lee',
 
 insert into patient values('Erica', '', 'Tucker', 
   11, 'f', '12/31/2013', 143.6, 201.2);
+
+
+insert into images values(5, '/path/to/img1');
+insert into images values(5, '/path/to/img2');
+insert into images values(5, '/path/to/img3');
+
+insert into images values(6, '/path/to/img1');
+insert into images values(6, '/path/to/img2');
 
 .exit
 
